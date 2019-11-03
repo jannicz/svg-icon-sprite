@@ -13,6 +13,44 @@
         <button class="remove">Remove SVG Icon from DOM</button>
     </div>
 
+    <h3>More Examples</h3>
+    <ul>
+      <li><a href="examples/static.html">On page load</a></li>
+    </ul>
+
     <script src="/bundle.js"></script>
+
+    <script>
+      const add = document.querySelector('.add');
+      const update = document.querySelector('.update');
+      const remove = document.querySelector('.remove');
+      let square;
+
+      function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      add.addEventListener('click', () => {
+        console.log('Add SVG to Dom');
+        // Create a custom square element
+        square = document.createElement('svg-icon');
+        square.setAttribute('l', '100');
+        square.setAttribute('c', 'red');
+        document.body.appendChild(square);
+      });
+
+      update.addEventListener('click', () => {
+        square.setAttribute('l', random(50, 200));
+        square.setAttribute('c', `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`);
+      });
+
+      remove.addEventListener('click', () => {
+        document.body.removeChild(square);
+
+        update.setAttribute('disabled', 'disabled');
+        remove.setAttribute('disabled', 'disabled');
+        add.removeAttribute('disabled');
+      });
+    </script>
 </body>
 </html>
