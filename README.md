@@ -1,0 +1,3 @@
+# SVG Icon Sprite WebCompoent
+
+In progress...
