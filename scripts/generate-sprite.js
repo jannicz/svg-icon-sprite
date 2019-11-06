@@ -13,7 +13,7 @@ const minimist = require('minimist');
  * @author Jan Suwart
  * @licence MIT
  */
-class SpriteGenerator {
+class SvgIconSpriteGenerator {
 
   constructor(args) {
     if (!args.folder) {
@@ -36,7 +36,7 @@ class SpriteGenerator {
     // PWD = working directory when the process was started
     const workingPath = path.resolve(process.env.PWD, this.folder);
 
-    console.log('Running SpriteGenerator...');
+    console.log('Running svg-icon-sprite generator...');
 
     this.readDirectory(this.folder, 'svg').then(files => {
 
@@ -150,5 +150,5 @@ class SpriteGenerator {
 const argv = minimist(process.argv.slice(2));
 
 // Create the instance and set the options
-const spriteGenerator = new SpriteGenerator(argv);
+const spriteGenerator = new SvgIconSpriteGenerator(argv);
 spriteGenerator.parseFiles();
