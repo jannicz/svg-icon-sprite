@@ -6,7 +6,7 @@ const minimist = require('minimist');
  * Library for generating SVG sprites (using symbol technique)
  *
  * @example
- * Run using "node ./index [options] with following option possibilities:
+ * Run using "node ./generate-sprite [options] with following options:
  * --folder=folder/subfolder
  * --output=folder/filename.svg
  *
@@ -30,7 +30,7 @@ class SpriteGenerator {
   }
 
   /**
-   * Define path and filename, read the folder and filter for files, start splitting algorithm
+   * Define path and filename, read the folder and filter for files, append files
    */
   parseFiles() {
     // PWD = working directory when the process was started
@@ -50,13 +50,16 @@ class SpriteGenerator {
       });
 
       fullFilePath.forEach((fileObj) => {
-        let file = fs.readFileSync(fileObj.path, 'utf8');
-        let name = fileObj.name.replace('.svg', '');
+        try {
+          let file = fs.readFileSync(fileObj.path, 'utf8');
+          let name = fileObj.name.replace('.svg', '');
 
-        // console.log('\nProcessing file', fileObj.name, '\n');
+          // console.log('\nProcessing file', fileObj.name, '\n');
 
-        this.svgElement += this.appendSymbol(file, name);
-
+          this.svgElement += this.appendSymbol(file, name);
+        } catch (e) {
+          console.log('Could not parse', fileObj.name, '- file skipped!');
+        }
       });
 
       this.svgElement += '</svg>';
@@ -69,17 +72,21 @@ class SpriteGenerator {
   }
 
   /**
-   * @param {string} file - full path and name of current file
-   * @return {string} the modified file as string
+   * @param {string} file - full path of current file
+   * @param {string} file - name of current file
+   * @return {string} the created symbol element as string
    */
   appendSymbol(file, name) {
-    if (!file) {
+    if (!file || !name) {
       throw new Error('No file found at ' + file);
+    } else if (!file.includes('<svg')) {
+      throw new Error('No SVG node found in ' + file);
     }
 
     this.elementsChanged++;
 
     const symbolEl = file
+      .replace(/ id=".*?"/, '')
       .replace('<svg', `<symbol id="${name}"`)
       .replace('</svg>', '</symbol>');
 
@@ -117,7 +124,7 @@ class SpriteGenerator {
   }
 
   /**
-   * Overwrites the file into the same folder
+   * Writes the string into a folder
    * @param {string} fullFileName - folder and filename
    * @param {string} outputString - the output that should be written
    */

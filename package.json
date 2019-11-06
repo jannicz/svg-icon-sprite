@@ -1,11 +1,11 @@
 {
   "name": "svg-icon-sprite",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A Web Component for generating and including SVG spites",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config-name default --mode development --open",
-    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/icons --output=assets/sprites/sprite.svg"
+    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/freepik-icons --output=assets/sprites/sprite.svg"
   },
   "author": "Jan Suwart",
   "license": "MIT",

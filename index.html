@@ -2,21 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Jan Suwart">
+    <link rel="stylesheet" type="text/css" href="examples/demo.css">
     <title>SVG Icon Sprite Demo</title>
 </head>
 <body>
-    <h1>SVG Icon Sprite Demo</h1>
-
-    <div>
-        <button class="add">Add SVG Icon to DOM</button>
-        <button class="update">Update attributes</button>
-        <button class="remove">Remove SVG Icon from DOM</button>
+    <div class="container">
+      <h1>SVG Icon Sprite - Web Component</h1>
     </div>
 
-    <h3>More Examples</h3>
-    <ul>
-      <li><a href="examples/static.html">On page load</a></li>
-    </ul>
+    <article>
+      <h2>Single Color (hover color)</h2>
+      <ul class="demo-list">
+        <li class="demo-list-item red">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#blender"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+        <li class="demo-list-item lightred">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#bunsen-burner"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+        <li class="demo-list-item orange">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#barometer"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+        <li class="demo-list-item lightgreen">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#blender"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+        <li class="demo-list-item green">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#write"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+        <li class="demo-list-item violet">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#barometer"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+      </ul>
+    </article>
+
+    <article>
+      <h2>Multi Color</h2>
+      <ul class="demo-list">
+        <li class="demo-list-item">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#bear"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+        <li class="demo-list-item">
+          <svg-icon
+            src="/assets/sprites/sprite.svg#milk"
+            width="110px"
+            height="110px"
+            classes="foo bar"
+          ></svg-icon>
+        </li>
+      </ul>
+    </article>
+
+    <article style="display: none;">
+      <div>
+          <button class="add">Add SVG Icon to DOM</button>
+          <button class="update">Update attributes</button>
+          <button class="remove">Remove SVG Icon from DOM</button>
+      </div>
+    </article>
+
+    <article>
+      <h2>More Examples</h2>
+      <ul>
+        <li><a href="examples/static.html">Static</a></li>
+      </ul>
+    </article>
+
+    <footer class="container">
+      <h2>About</h2>
+      <p>Report bugs or feature requests on <a href="https://github.com/jannicz/svg-icon-sprite/issues">Github Issues</a></p>
+
+      <p>
+        Copyright Jan Suwart, MIT license
+      </p>
+      <p>
+        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+      </p>
+    </footer>
 
     <script src="/bundle.js"></script>
 
@@ -50,6 +146,21 @@
         update.setAttribute('disabled', 'disabled');
         remove.setAttribute('disabled', 'disabled');
         add.removeAttribute('disabled');
+      });
+    </script>
+
+    <script>
+      const iconElems = document.querySelectorAll('.demo-list-item');
+
+      iconElems.forEach((icon, i) => {
+        const index = i + 1;
+
+        setTimeout(() => {
+          icon.classList.add('focus');
+        }, 1000 + (index * 100));
+        setTimeout(() => {
+          icon.classList.remove('focus');
+        }, 1000 + (1.5 * index * 100));
       });
     </script>
 </body>
