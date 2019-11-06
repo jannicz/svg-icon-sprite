@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config-name default --mode development --open",
+    "build": "webpack --config-name prod",
     "generate:sprite": "node scripts/generate-sprite.js --folder=assets/freepik-icons --output=assets/sprites/sprite.svg"
   },
   "author": "Jan Suwart",
