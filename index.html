@@ -17,10 +17,11 @@
       <ul class="demo-list">
         <li class="demo-list-item red">
           <svg-icon
-            src="assets/sprites/sprite.svg#blender"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            src="assets/sprites/sprite.svg#blender"
+            classes="blender foo"
           ></svg-icon>
         </li>
         <li class="demo-list-item lightred">
@@ -28,7 +29,8 @@
             src="assets/sprites/sprite.svg#bunsen-burner"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="burner"
           ></svg-icon>
         </li>
         <li class="demo-list-item orange">
@@ -36,7 +38,8 @@
             src="assets/sprites/sprite.svg#barometer"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="barometer"
           ></svg-icon>
         </li>
         <li class="demo-list-item lightgreen">
@@ -44,7 +47,8 @@
             src="assets/sprites/sprite.svg#blender"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="blender"
           ></svg-icon>
         </li>
         <li class="demo-list-item green">
@@ -52,7 +56,8 @@
             src="assets/sprites/sprite.svg#write"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="writer"
           ></svg-icon>
         </li>
         <li class="demo-list-item violet">
@@ -60,7 +65,8 @@
             src="assets/sprites/sprite.svg#barometer"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="barometer"
           ></svg-icon>
         </li>
       </ul>
@@ -74,7 +80,8 @@
             src="assets/sprites/sprite.svg#bear"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="foo bear"
           ></svg-icon>
         </li>
         <li class="demo-list-item">
@@ -82,7 +89,8 @@
             src="assets/sprites/sprite.svg#milk"
             width="110px"
             height="110px"
-            classes="foo bar"
+            viewBox="0 0 512 512"
+            classes="foo milk"
           ></svg-icon>
         </li>
       </ul>
@@ -156,10 +164,10 @@
 
         setTimeout(() => {
           icon.classList.add('focus');
-        }, 1000 + (index * 100));
+        }, 500 + (index * 100));
         setTimeout(() => {
           icon.classList.remove('focus');
-        }, 1000 + (1.5 * index * 100));
+        }, 700 + (1.4 * index * 100));
       });
     </script>
 </body>

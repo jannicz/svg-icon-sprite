@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = [{
   name: 'default',
   mode: 'development',
-  entry: './src/index.ts',
+  entry: './src/svg-icon.webcomponent.ts',
   devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname),
@@ -25,7 +25,7 @@ module.exports = [{
 }, {
   name: 'prod',
   mode: 'production',
-  entry: './src/index.ts',
+  entry: './src/svg-icon.webcomponent.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'svg-icon-sprite.js'
