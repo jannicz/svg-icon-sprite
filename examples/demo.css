@@ -4,35 +4,39 @@ html {
   box-sizing: border-box;
 }
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
-  background-color: #212121;
+  background-color: #121212;
   color: #fff;
 }
-article, .container {
-  max-width: 1200px;
-  padding: 0 8% 0 8%;
-  border-radius: 3px;
+.container {
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 8% 0 8%;
+}
+article, .article {
+  padding: 15px;
+  margin: 15px;
+  border-radius: 5px;
+  background-color: #212121;
+}
+.card {
 }
 .has-border {
   border: 1px solid #ea5455;
 }
 h1, h2, h3 {
-  padding-bottom: 0.3em;
-  font-weight: 600;
+  font-weight: 800;
+  margin: 0;
 }
 h1 {
-  font-size: 2em;
-  border-bottom: 3px solid #ddd;
+  font-size: 2.5em;
 }
 h2 {
   font-size: 1.5em;
-  border-bottom: 2px solid #aaa;
-  padding-bottom: 5px;
 }
 h3 {
   font-size: 1.25em;
@@ -42,7 +46,7 @@ p {
   margin-bottom: 15px;
 }
 a {
-  color: steelblue;
+  color: #bb86fc;
   text-decoration: none;
 }
 ul {
@@ -82,9 +86,11 @@ small {
 }
 .demo-list {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .demo-list-item {
+  margin: 0 20px;
   transition: transform ease-in-out 0.1s, color linear 0.1s;
   transform-origin: center center;
 }
@@ -92,21 +98,39 @@ small {
   transform: scale(1.2);
   color: #fff;
 }
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.col {
+  width: 50%;
+  height: 140px;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+.controls input[type="range"] {
+  width: 200px;
+  height: 22px;
+  margin-bottom: 20px;
+}
+.controls label {
+  font-weight: bold;
+}
+.manipulation svg-icon {
+  transition: color linear 0.1s;
+}
+.manipulation svg-icon:hover {
+  color: #FF9493 !important;
+}
 
 /* Colors */
-
-.primary-dark {
-  background-color: #2d4059;
-}
-.primary-red {
-  background-color: #ea5455;
-}
-.primary-orange {
-  background-color: #f07b3f;
-}
-.primary-yellow {
-  background-color: #ffd460;
-}
 
 .red {
   color: #FF4E4E;

@@ -1,72 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Jan Suwart">
-    <link rel="stylesheet" type="text/css" href="examples/demo.css">
-    <title>SVG Icon Sprite Demo</title>
-    <script src="dist/svg-icon-sprite.js"></script>
+  <meta charset="UTF-8">
+  <meta name="author" content="Jan Suwart">
+  <link rel="stylesheet" type="text/css" href="examples/demo.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <title>SVG Icon Sprite Demo</title>
+  <script src="dist/svg-icon-sprite.js"></script>
 </head>
 <body>
-    <div class="container">
+  <div class="container">
+    <div class="article">
       <h1>SVG Icon Sprite - Web Component</h1>
     </div>
 
     <article>
-      <h2>Single Color (hover color)</h2>
+      <h2>Single Color</h2>
       <ul class="demo-list">
         <li class="demo-list-item red">
           <svg-icon
-            width="110px"
-            height="110px"
-            viewBox="0 0 512 512"
-            src="assets/sprites/sprite.svg#blender"
-            classes="blender foo"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
+            src="assets/sprites/sprite.svg#accessibility-24px"
+            classes="access foo"
           ></svg-icon>
         </li>
         <li class="demo-list-item lightred">
           <svg-icon
-            src="assets/sprites/sprite.svg#bunsen-burner"
-            width="110px"
-            height="110px"
-            viewBox="0 0 512 512"
-            classes="burner"
+            src="assets/sprites/sprite.svg#language-24px"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
+            classes="lang"
           ></svg-icon>
         </li>
         <li class="demo-list-item orange">
           <svg-icon
-            src="assets/sprites/sprite.svg#barometer"
-            width="110px"
-            height="110px"
-            viewBox="0 0 512 512"
-            classes="barometer"
+            src="assets/sprites/sprite.svg#build-24px"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
+            classes="build"
           ></svg-icon>
         </li>
         <li class="demo-list-item lightgreen">
           <svg-icon
-            src="assets/sprites/sprite.svg#blender"
-            width="110px"
-            height="110px"
-            viewBox="0 0 512 512"
-            classes="blender"
+            src="assets/sprites/sprite.svg#explore-24px"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
           ></svg-icon>
         </li>
         <li class="demo-list-item green">
           <svg-icon
-            src="assets/sprites/sprite.svg#write"
-            width="110px"
-            height="110px"
-            viewBox="0 0 512 512"
-            classes="writer"
+            src="assets/sprites/sprite.svg#backup-24px"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
           ></svg-icon>
         </li>
         <li class="demo-list-item violet">
           <svg-icon
-            src="assets/sprites/sprite.svg#barometer"
-            width="110px"
-            height="110px"
-            viewBox="0 0 512 512"
-            classes="barometer"
+            src="assets/sprites/sprite.svg#print-24px"
+            width="48px"
+            height="48px"
+            viewBox="0 0 24 24"
           ></svg-icon>
         </li>
       </ul>
@@ -78,8 +77,8 @@
         <li class="demo-list-item">
           <svg-icon
             src="assets/sprites/sprite.svg#bear"
-            width="110px"
-            height="110px"
+            width="64px"
+            height="64px"
             viewBox="0 0 512 512"
             classes="foo bear"
           ></svg-icon>
@@ -87,8 +86,8 @@
         <li class="demo-list-item">
           <svg-icon
             src="assets/sprites/sprite.svg#milk"
-            width="110px"
-            height="110px"
+            width="64px"
+            height="64px"
             viewBox="0 0 512 512"
             classes="foo milk"
           ></svg-icon>
@@ -104,14 +103,57 @@
       </div>
     </article>
 
+    <article style="min-height: 200px;">
+      <h2>Manipulation</h2>
+
+      <div class="row">
+        <div class="col center manipulation">
+          <svg-icon
+            src="assets/sprites/sprite.svg#chart-24px"
+            width="110px"
+            height="110px"
+            viewBox="0 0 24 24"
+            classes="barometer"
+          ></svg-icon>
+        </div>
+        <div class="col">
+          <div class="controls">
+            <label for="type">Source</label>
+            <input type="range" id="type" name="icon-path"
+                   min="0" max="7" value="0" list="tickmarks-type">
+            <datalist id="tickmarks-type">
+              <option value="0"></option>
+              <option value="1"></option>
+              <option value="2"></option>
+              <option value="3"></option>
+              <option value="4"></option>
+              <option value="5"></option>
+              <option value="6"></option>
+              <option value="7"></option>
+            </datalist>
+          </div>
+          <div class="controls">
+            <label for="size">Size</label>
+            <input type="range" id="size" name="icon-size"
+                   min="20" max="200" value="110" step="10">
+          </div>
+          <div>
+            <input type="color" id="color" name="color"
+                   value="#ffffff">
+            <label for="color">Color</label>
+          </div>
+        </div>
+      </div>
+    </article>
+
     <article>
       <h2>More Examples</h2>
       <ul>
-        <li><a href="examples/static.html">Static</a></li>
+        <li><a href="examples/scaling.html">ViewBox and Scaling examples</a></li>
       </ul>
     </article>
 
-    <footer class="container">
+    <footer class="article">
       <h2>About</h2>
       <p>Report bugs or feature requests on <a href="https://github.com/jannicz/svg-icon-sprite/issues">Github Issues</a></p>
 
@@ -119,41 +161,35 @@
         Copyright Jan Suwart, MIT license
       </p>
       <p>
-        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        Icons by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> and
+        <a href="https://material.io/resources/icons/?style=baseline" title="Material">Material IO</a>
       </p>
     </footer>
 
     <script>
-      const add = document.querySelector('.add');
-      const update = document.querySelector('.update');
-      const remove = document.querySelector('.remove');
-      let square;
+      const typeInput = document.querySelector('#type');
+      const sizeInput = document.querySelector('#size');
+      const colorInput = document.querySelector('#color');
+      const icon = document.querySelector('.manipulation svg-icon');
 
-      function random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-      }
-
-      add.addEventListener('click', () => {
-        console.log('Add SVG to Dom');
-        // Create a custom square element
-        square = document.createElement('svg-icon');
-        square.setAttribute('l', '100');
-        square.setAttribute('c', 'red');
-        document.body.appendChild(square);
+      typeInput.addEventListener('change', (event) => {
+        let number = event.target.value;
+        let demoList = document.querySelectorAll('.demo-list li');
+        let newIconSrc = demoList[number].querySelector('svg-icon').getAttribute('src');
+        icon.setAttribute('src', newIconSrc);
+        console.log('change src to',newIconSrc);
+      });
+      sizeInput.addEventListener('change', (event) => {
+        let size = event.target.value;
+        icon.setAttribute('width', size);
+        icon.setAttribute('height', size);
+      });
+      colorInput.addEventListener('change', (event) => {
+        let color = event.target.value;
+        console.log('change color to', color);
+        icon.setAttribute('style', 'color: ' + color + ';');
       });
 
-      update.addEventListener('click', () => {
-        square.setAttribute('l', random(50, 200));
-        square.setAttribute('c', `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`);
-      });
-
-      remove.addEventListener('click', () => {
-        document.body.removeChild(square);
-
-        update.setAttribute('disabled', 'disabled');
-        remove.setAttribute('disabled', 'disabled');
-        add.removeAttribute('disabled');
-      });
     </script>
 
     <script>
@@ -170,5 +206,7 @@
         }, 700 + (1.4 * index * 100));
       });
     </script>
+
+  </div>
 </body>
 </html>

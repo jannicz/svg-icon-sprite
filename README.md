@@ -4,6 +4,8 @@ A Web Component to include and manipulate SVGs from a generated sprite file
 
 ## Demo
 
+<img width="280" alt="Demo Screenshot" src="screenshot.png">
+
 [Try out the svg-icon-sprite demo](https://jannicz.github.io/svg-icon-sprite/)
 
 ## Use Cases
@@ -20,69 +22,88 @@ npm i -S svg-icon-sprite
 
 ## Generating the sprite
 
-Each time you add an icon, you need to run a script generating the sprite. You might want to add it to your npm scripts:
+Each time you add an icon, you need to run a script generating the sprite.
+Add the following line to your npm scripts
 
 ```json
 "scripts": {
-  "generate:sprite": "node node-modules/svg-icon-sprite/scripts/generate-sprite.js --folder=assets/icons --output=assets/sprites/sprite.svg"
+  "generate:sprite": "node node_modules/svg-icon-sprite/scripts/generate-sprite.js --folder=dir/subdir --output=dir/filename.svg"
 }
 ```
 
-And run it via
+in which `--folder` is the path of the source files relative to your __package.json__, i.e. `--folder=assets/icons`
+and likewise `--output` is the sprite destination, i.e. `--output=assets/sprites/sprite.svg`. Afterwards run it via
 
 ```
 npm run generate:sprite
 ```
 
-The script will iterate all SVGs in the folder `/assets/icons` and create a sprite SVG file into
-`/assets/sprites` using the [svg symbols technique](https://css-tricks.com/svg-symbol-good-choice-icons/).
+The script will iterate all SVGs in the source folder and create a single sprite SVG file
+using the [svg symbols technique](https://css-tricks.com/svg-symbol-good-choice-icons/).
 
-## Invoke the component
+## Import the component
 
-### React
+### Static web pages
 
-Using a module loader like Webpack (i.e. with a React) import the web component
-via the `import` statement and then invoke it in your template (HTML, JSX etc.)
+Simply import it using the script tag in your HTML head
 
-```jsx harmony
+```html
+<head>
+  <script type="module" src="node_modules/svg-icon-sprite/dist/svg-icon-sprite.js"></script>
+</head>
+```
+
+### Via a module bundler
+
+If you are using a bundler, import the node module via
+
+```js
+// Webpack or some ES6-style bundler
 import 'svg-icon-sprite';
 
-class MyClass extends React.Component {
-  render() {
-    return (
-      <svg-icon
-          src="assets/sprites/sprite.svg#blender"
-          width="50px"
-          height="50px"
-          classes="foo bar"
-      ></svg-icon>
-    )
-  }
+// CommonJS (Browserify)
+const SvgIconSprite = require('svg-icon-sprite');
+```
+
+Now you can invoke the web component using the `svg-icon` tag
+
+```html
+<svg-icon
+  src="assets/sprites/sprite.svg#explore"
+  width="48px"
+  height="48px"
+  classes="foo bar"
+></svg-icon>
+```
+
+### Using Angular or React
+
+Web components match perfectly with SPA like Angular or React.
+
+ - [React integration example](./INTEGRATION.md#user-content-react) 
+ - [Angular integration example](./INTEGRATION.md#user-content-angular) 
+
+## Options
+
+- `src` - icon source name, the syntax is `path/file#icon` where `path` is relative to your app folder, `file` is
+the name of the sprite and `icon` is the filename of the svg icon
+- `width` *optional* - width of the svg in any length unit, i.e. `32px`, `50%`, `auto` etc., default is `100%`
+- `height` *optional* - the height of the svg in any length unit
+- `classes` *optional* - class name(s) separated by spaces
+- `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available
+
+## Coloring
+
+This icon pattern works best when applied on single color icons (SVGs that do not have
+fill or stroke attributes). This enables you to use CSS rules to change the icons color:
+
+```scss
+svg-icon {
+  color: red;
 }
 ```
 
-### Angular
-
-Using Angular, first import svg-icon-sprite inside the component (`.ts` file)
-
-```javascript
-import 'svg-icon-sprite';
-```
-
-Now you can use the `svg-icon` tag inside your template
-
-```html
-<svg-icon src="assets/sprite.svg#bunsen-burner"></svg-icon>
-```
-
-Don't forget to add CUSTOM_ELEMENTS_SCHEMA in `app.module.ts`
-
-```
-@NgModule({
-  ...
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
-```
+Using two-tone or multi color icons, you will only be able to apply CSS transforms (i.e. scale).
 
 ## Author & License
 - Jan Suwart | MIT License
