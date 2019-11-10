@@ -23,11 +23,6 @@ article, .article {
   border-radius: 5px;
   background-color: #212121;
 }
-.card {
-}
-.has-border {
-  border: 1px solid #ea5455;
-}
 h1, h2, h3 {
   font-weight: 800;
   margin: 0;
@@ -48,10 +43,18 @@ p {
 a {
   color: #bb86fc;
   text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover, a:focus {
+  color: #CFF0A2;
 }
 ul {
   list-style: none;
   padding: 0;
+}
+ul.list {
+  list-style: circle;
+  padding-left: 20px;
 }
 li {
   margin: 5px;
@@ -67,17 +70,17 @@ label {
 pre {
   padding: 8px 8px 16px 8px;
   margin: 0;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #ddd;
-  border: 1px solid #ccc;
+  background-color: #121212;
   font-family: Courier, monospace;
+  color: #FF9493;
   overflow: auto;
 }
 code {
   line-height: 1.45;
-  background-color: lavender;
+  background-color: #333;
   font-family: Courier, monospace;
 }
 small {
@@ -88,7 +91,6 @@ small {
   display: flex;
   flex-wrap: wrap;
 }
-
 .demo-list-item {
   margin: 0 20px;
   transition: transform ease-in-out 0.1s, color linear 0.1s;
@@ -101,11 +103,13 @@ small {
 .row {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
-.col {
-  width: 50%;
-  height: 140px;
+.row.end {
+  justify-content: flex-start;
 }
+.col {}
 .center {
   display: flex;
   align-items: center;
@@ -114,20 +118,51 @@ small {
 .controls {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
+}
+.controls.inline {
+  flex-direction: row;
 }
 .controls input[type="range"] {
   width: 200px;
   height: 22px;
-  margin-bottom: 20px;
+}
+.controls input[type="number"], .controls input[type="color"] {
+  width: 40px;
+  background-color: #ddd;
+  border-color: #aaa;
+}
+.controls input[disabled] {
+  background-color: #999;
 }
 .controls label {
   font-weight: bold;
+}
+.controls .small {
+  font-size: 80%;
+  color: #CFF0A2;
+}
+label[for="type"] {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+.manipulation {
+  width: 200px;
+  height: 200px;
 }
 .manipulation svg-icon {
   transition: color linear 0.1s;
 }
 .manipulation svg-icon:hover {
   color: #FF9493 !important;
+}
+.scale-example {
+  width: 100px;
+}
+small {
+  font-size: 80%;
+  color: #bbb;
 }
 
 /* Colors */
@@ -149,4 +184,15 @@ small {
 }
 .violet {
   color: #97A3EA;
+}
+
+/* Manipulation */
+
+.stroke-width {
+  stroke: #FFC88E;
+  stroke-width: 1px;
+}
+
+.fill-opacity {
+  fill-opacity: 0.5;
 }

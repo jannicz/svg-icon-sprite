@@ -4,15 +4,78 @@
   <meta charset="UTF-8">
   <meta name="author" content="Jan Suwart">
   <link rel="stylesheet" type="text/css" href="demo.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <script src="../dist/svg-icon-sprite.js"></script>
   <title>SVG Icon Sprite Demo</title>
 </head>
 <body>
-    <div class="container">
-      <h1>SVG Icon Sprite - Web Component</h1>
+<div class="container">
+  <div class="article">
+    <h1>SVG Icon Sprite - Web Component</h1>
+    <a href="../index.html">&#171; Back to overview</a>
+  </div>
 
-      <p>
-        In progress...
-      </p>
+  <article>
+    <h2>Scaling and sizing recommendations</h2>
+    <ul class="list">
+      <li>in order to display the icon in original size, match the <code>[width]</code>
+        and <code>[height]</code> with the ones of the SVG source file</li>
+      <li>in order to scale the SVG up or down, the best approach is to wrap the SVG into
+        a div and size it using CSS transforms, i.e. <code>transform: scale(0.5);</code></li>
+    </ul>
+  </article>
+
+  <article>
+    <h2 id="viewBox">Scaling <small>(using viewBox)</small></h2>
+    <p>
+      Scaling via <code>viewBox</code> is <strong>not consistent across browsers</strong>.
+      The pattern depends on your SVG source file, whether it already contains a <code>viewBox</code> or not.
+      The following example SVGs with an original size of <code>100x100px</code> are scaled down by 50%.
+    </p>
+
+    <div class="row">
+      <div class="col scale-example lightgreen">
+        <svg-icon
+          src="../assets/sprites/sprite.svg#star_100x100"
+          width="100px"
+          height="100px"
+          viewBox="-50 -50 200 200"
+        ></svg-icon>
+      </div>
+
+      <div class="col" style="width: 66%;">
+        <pre>
+&lt;!-- SVG source lacks a viewBox --&gt;
+&lt;svg-icon
+    src="assets/sprites/sprite.svg#star_100x100"
+    width="100px"
+    viewBox="-50 -50 200 200"&gt;
+&lt;/svg-icon&gt;</pre>
+      </div>
     </div>
+
+    <p></p>
+
+    <div class="row">
+      <div class="col scale-example orange">
+        <svg-icon
+          src="../assets/sprites/sprite.svg#star_100x100_viewbox"
+          width="50px" viewBox="0 0 100 100"
+        ></svg-icon>
+      </div>
+
+      <div class="col" style="width: 66%;">
+        <pre>
+&lt;!-- SVG source contains a viewBox --&gt;
+&lt;svg-icon
+    src="assets/sprites/sprite.svg#star_100x100_viewbox"
+    width="50px"
+    viewBox="0 0 100 100"&gt;
+&lt;/svg-icon&gt;</pre>
+      </div>
+    </div>
+
+  </article>
+  </div>
 </body>
 </html>

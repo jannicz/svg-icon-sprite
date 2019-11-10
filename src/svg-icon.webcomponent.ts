@@ -35,21 +35,16 @@ class SvgIcon extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('%cCustom element added to page', 'color: orange');
     this.render();
   }
 
   disconnectedCallback() {
-    console.log('Custom element removed from page.');
   }
 
   adoptedCallback() {
-    console.log('Custom element moved to new page.');
   }
 
   attributeChangedCallback(property, oldValue, newValue) {
-    console.log('%cCustom element attribute changed', 'color: green', property, 'newValue =>', newValue, '(oldVal =>', oldValue, ')');
-
     switch (property) {
       case SvgAttr.Src:
         this.src = newValue;
@@ -75,8 +70,6 @@ class SvgIcon extends HTMLElement {
 
   // Updates a single property that was changed
   updateByProperty(property: SvgAttr) {
-    console.log('%cUpdate property', 'color: cyan', property);
-
     switch (property) {
       case SvgAttr.Src:
         const useEl = this.svgEl.querySelector('use');
@@ -105,7 +98,6 @@ class SvgIcon extends HTMLElement {
   }
 
   render() {
-    console.count('Render SVG Element count');
     // Mandatory attributes and the markup
     this.innerHTML = `
       <svg width="${this.width}" height="${this.height}" style="${this.cssStyle}">

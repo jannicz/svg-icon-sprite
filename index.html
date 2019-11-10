@@ -20,35 +20,28 @@
         <li class="demo-list-item red">
           <svg-icon
             width="48px"
-            height="48px"
             viewBox="0 0 24 24"
             src="assets/sprites/sprite.svg#accessibility-24px"
-            classes="access foo"
           ></svg-icon>
         </li>
         <li class="demo-list-item lightred">
           <svg-icon
             src="assets/sprites/sprite.svg#language-24px"
             width="48px"
-            height="48px"
             viewBox="0 0 24 24"
-            classes="lang"
           ></svg-icon>
         </li>
         <li class="demo-list-item orange">
           <svg-icon
             src="assets/sprites/sprite.svg#build-24px"
             width="48px"
-            height="48px"
             viewBox="0 0 24 24"
-            classes="build"
           ></svg-icon>
         </li>
         <li class="demo-list-item lightgreen">
           <svg-icon
             src="assets/sprites/sprite.svg#explore-24px"
             width="48px"
-            height="48px"
             viewBox="0 0 24 24"
           ></svg-icon>
         </li>
@@ -56,7 +49,6 @@
           <svg-icon
             src="assets/sprites/sprite.svg#backup-24px"
             width="48px"
-            height="48px"
             viewBox="0 0 24 24"
           ></svg-icon>
         </li>
@@ -64,7 +56,6 @@
           <svg-icon
             src="assets/sprites/sprite.svg#print-24px"
             width="48px"
-            height="48px"
             viewBox="0 0 24 24"
           ></svg-icon>
         </li>
@@ -103,7 +94,7 @@
       </div>
     </article>
 
-    <article style="min-height: 200px;">
+    <article style="min-height: 230px;">
       <h2>Manipulation</h2>
 
       <div class="row">
@@ -111,14 +102,13 @@
           <svg-icon
             src="assets/sprites/sprite.svg#chart-24px"
             width="110px"
-            height="110px"
             viewBox="0 0 24 24"
-            classes="barometer"
           ></svg-icon>
         </div>
+
         <div class="col">
           <div class="controls">
-            <label for="type">Source</label>
+            <label for="type">Source <span class="small">chart-24px</span></label>
             <input type="range" id="type" name="icon-path"
                    min="0" max="7" value="0" list="tickmarks-type">
             <datalist id="tickmarks-type">
@@ -132,24 +122,56 @@
               <option value="7"></option>
             </datalist>
           </div>
+
           <div class="controls">
-            <label for="size">Size</label>
-            <input type="range" id="size" name="icon-size"
-                   min="20" max="200" value="110" step="10">
+            <label for="size">Width <span class="small">140px</span></label>
+            <input type="range" id="size" name="icon-size" min="20" max="200" value="140">
           </div>
-          <div>
-            <input type="color" id="color" name="color"
-                   value="#ffffff">
-            <label for="color">Color</label>
+
+          <div class="controls">
+            <label for="classes">Classes <span class="small">none</span></label>
+            <input type="range" id="classes" name="icon-classes"
+                   min="0" max="2" value="0" list="tickmarks-classes">
+            <datalist id="tickmarks-classes">
+              <option value="0"></option>
+              <option value="1"></option>
+              <option value="2"></option>
+            </datalist>
           </div>
         </div>
+
+        <div class="col">
+          <div class="controls inline">
+            <label for="viewbox-on">Viewbox on</label>
+            <input type="checkbox" id="viewbox-on" checked>
+          </div>
+          <div class="controls">
+            <label for="viewbox1">Viewbox values</label>
+            <div>
+              <input type="number" id="viewbox1" class="viewbox-input" value="0">
+              <input type="number" id="viewbox2" class="viewbox-input" value="0">
+              <input type="number" id="viewbox3" class="viewbox-input" value="24">
+              <input type="number" id="viewbox4" class="viewbox-input" value="24">
+            </div>
+          </div>
+
+          <div class="controls">
+            <label for="color">Color <span class="small">#ffffff</span></label>
+            <input type="color" id="color" name="color"
+                   value="#ffffff">
+          </div>
+        </div>
+      </div>
+
+      <div class="row end">
+        <small><em>Note:</em> fill/stroke manipulations will not apply on multi-color icons! ViewBox changes might differ across browsers!</small>
       </div>
     </article>
 
     <article>
       <h2>More Examples</h2>
       <ul>
-        <li><a href="examples/scaling.html">ViewBox and Scaling examples</a></li>
+        <li><a href="examples/scaling.html">&#187; ViewBox and Scaling examples</a></li>
       </ul>
     </article>
 
@@ -166,47 +188,7 @@
       </p>
     </footer>
 
-    <script>
-      const typeInput = document.querySelector('#type');
-      const sizeInput = document.querySelector('#size');
-      const colorInput = document.querySelector('#color');
-      const icon = document.querySelector('.manipulation svg-icon');
-
-      typeInput.addEventListener('change', (event) => {
-        let number = event.target.value;
-        let demoList = document.querySelectorAll('.demo-list li');
-        let newIconSrc = demoList[number].querySelector('svg-icon').getAttribute('src');
-        icon.setAttribute('src', newIconSrc);
-        console.log('change src to',newIconSrc);
-      });
-      sizeInput.addEventListener('change', (event) => {
-        let size = event.target.value;
-        icon.setAttribute('width', size);
-        icon.setAttribute('height', size);
-      });
-      colorInput.addEventListener('change', (event) => {
-        let color = event.target.value;
-        console.log('change color to', color);
-        icon.setAttribute('style', 'color: ' + color + ';');
-      });
-
-    </script>
-
-    <script>
-      const iconElems = document.querySelectorAll('.demo-list-item');
-
-      iconElems.forEach((icon, i) => {
-        const index = i + 1;
-
-        setTimeout(() => {
-          icon.classList.add('focus');
-        }, 500 + (index * 100));
-        setTimeout(() => {
-          icon.classList.remove('focus');
-        }, 700 + (1.4 * index * 100));
-      });
-    </script>
-
+    <script src="./examples/demo.js"></script>
   </div>
 </body>
 </html>

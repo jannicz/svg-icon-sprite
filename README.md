@@ -43,7 +43,7 @@ using the [svg symbols technique](https://css-tricks.com/svg-symbol-good-choice-
 
 ## Import the component
 
-### Static web pages
+### In static web pages
 
 Simply import it using the script tag in your HTML head
 
@@ -65,28 +65,28 @@ import 'svg-icon-sprite';
 const SvgIconSprite = require('svg-icon-sprite');
 ```
 
-Now you can invoke the web component using the `svg-icon` tag
+### Use the component
+
+Now that the web component is registered you can invoke using the `svg-icon` tag
 
 ```html
 <svg-icon
   src="assets/sprites/sprite.svg#explore"
   width="48px"
-  height="48px"
-  classes="foo bar"
+  viewBox="0 0 24 24"
 ></svg-icon>
 ```
 
-### Using Angular or React
+### Using inside of Angular or React
 
-Web components match perfectly with SPA like Angular or React.
+The Svg Icon web component matches perfectly with SPA like Angular or React
 
  - [React integration example](./INTEGRATION.md#user-content-react) 
  - [Angular integration example](./INTEGRATION.md#user-content-angular) 
 
 ## Options
 
-- `src` - icon source name, the syntax is `path/file#icon` where `path` is relative to your app folder, `file` is
-the name of the sprite and `icon` is the filename of the svg icon
+- `src` - icon source relative to your app folder, syntax is `folder/file#icon` where `icon` is the filename of the svg icon
 - `width` *optional* - width of the svg in any length unit, i.e. `32px`, `50%`, `auto` etc., default is `100%`
 - `height` *optional* - the height of the svg in any length unit
 - `classes` *optional* - class name(s) separated by spaces
@@ -103,7 +103,24 @@ svg-icon {
 }
 ```
 
-Using two-tone or multi color icons, you will only be able to apply CSS transforms (i.e. scale).
+When using multi-color icons (icon that contain styles inside of their markup),
+you will only be able to apply CSS transforms (i.e. scale).
+
+### Scaling and Sizing
+
+If your SVG does not scale like expected (i.e. it is cropped or larger than desired) it might be lacking a `viewBox`.
+Set the `viewBox` property manually to match the size of the exported shape. A combination of the correct
+`viewBox` and width is required.
+
+```html
+<!-- i.e. lower '0 0 24 24' to '0 0 20 20' to scale up -->
+<svg-icon src="assets/sprites/sprite.svg#star"
+  width="48px"
+  viewBox="0 0 24 24"
+></svg-icon>
+```
+
+See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
 
 ## Author & License
 - Jan Suwart | MIT License

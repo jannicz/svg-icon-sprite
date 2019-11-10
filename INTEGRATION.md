@@ -26,7 +26,16 @@ class MyClass extends React.Component {
 
 ### Angular
 
-Using Angular, first import svg-icon-sprite inside the component (`.ts` file)
+In order to use Web Components in Angular, you must fist add `CUSTOM_ELEMENTS_SCHEMA` in `app.module.ts`
+
+```
+@NgModule({
+  ...
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+```
+
+Then import `svg-icon-sprite` inside of the component (`.ts` file)
 
 ```javascript
 import 'svg-icon-sprite';
@@ -36,15 +45,6 @@ Now you can use the `svg-icon` tag inside your template (`.html` file)
 
 ```html
 <svg-icon src="assets/sprite.svg#bunsen-burner"></svg-icon>
-```
-
-In order to use Web Components, you must add `CUSTOM_ELEMENTS_SCHEMA` in `app.module.ts`
-
-```
-@NgModule({
-  ...
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
 ```
 
 ## Author & License
