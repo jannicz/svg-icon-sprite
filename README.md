@@ -31,8 +31,8 @@ Add the following line to your npm scripts
 }
 ```
 
-in which `--folder` is the path of the source files relative to your __package.json__, i.e. `--folder=assets/icons`
-and likewise `--output` is the sprite destination, i.e. `--output=assets/sprites/sprite.svg`. Afterwards run it via
+in which `--folder` is the path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
+and `--output` is the sprite destination, i.e. `--output=assets/sprites/sprite.svg`. Afterwards run it via
 
 ```
 npm run generate:sprite
@@ -61,13 +61,13 @@ If you are using a bundler, import the node module via
 // Webpack or some ES6-style bundler
 import 'svg-icon-sprite';
 
-// CommonJS (Browserify)
-const SvgIconSprite = require('svg-icon-sprite');
+// Browserify (CommonJS)
+const SvgIcon = require('svg-icon-sprite');
 ```
 
 ### Use the component
 
-Now that the web component is registered you can invoke using the `svg-icon` tag
+Now that the web component is registered, you can invoke using the `svg-icon` tag
 
 ```html
 <svg-icon
@@ -79,14 +79,14 @@ Now that the web component is registered you can invoke using the `svg-icon` tag
 
 ### Using inside of Angular or React
 
-The Svg Icon web component matches perfectly with SPA like Angular or React
+The SVG-Icon web component matches perfectly with SPA like Angular or React
 
  - [React integration example](./INTEGRATION.md#user-content-react) 
  - [Angular integration example](./INTEGRATION.md#user-content-angular) 
 
 ## Options
 
-- `src` - icon source relative to your app folder, syntax is `folder/file#icon` where `icon` is the filename of the svg icon
+- `src` - icon source relative to your app folder, syntax is `folder/file#icon` where `icon` is the filename of the svg
 - `width` *optional* - width of the svg in any length unit, i.e. `32px`, `50%`, `auto` etc., default is `100%`
 - `height` *optional* - the height of the svg in any length unit
 - `classes` *optional* - class name(s) separated by spaces
@@ -121,6 +121,7 @@ Set the `viewBox` property manually to match the size of the exported shape. A c
 ```
 
 See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
+Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
 
 ## Author & License
 - Jan Suwart | MIT License
