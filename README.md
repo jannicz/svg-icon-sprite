@@ -125,5 +125,21 @@ The SVG-Icon web component matches perfectly with SPA like Angular or React
 See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
 Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
 
+## Polyfills
+
+As Web Components are not supported in all browsers, you might want to install a polyfill
+
+```
+npm i @webcomponents/webcomponentsjs
+```
+
+and include it in the head of your index.html
+
+```html
+<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+```
+
+To learn more, read [this](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs).
+
 ## Author & License
 - Jan Suwart | MIT License
