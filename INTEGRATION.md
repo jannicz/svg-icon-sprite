@@ -2,6 +2,8 @@
 
 ## Integration Examples
 
+First, add this lib to your `package.json`.
+
 ### React
 
 When using a module loader like Webpack (i.e. with a React), import the web component
@@ -23,6 +25,8 @@ class MyClass extends React.Component {
   }
 }
 ```
+
+A thorough React example you will find on [codesandbox](https://codesandbox.io/s/fervent-northcutt-lvupd)
 
 ### Angular
 

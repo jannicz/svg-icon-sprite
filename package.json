@@ -1,6 +1,6 @@
 {
   "name": "svg-icon-sprite",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A Web Component for generating and including SVG spites",
   "main": "dist/svg-icon-sprite.js",
   "bugs": {
@@ -22,7 +22,7 @@
     "babel-preset-es2015": "^6.24.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.6.4",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   },

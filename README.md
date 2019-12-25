@@ -12,7 +12,7 @@ A Web Component to include and manipulate SVGs from a generated sprite file
 
  - Serve all your SVG icons from a single file
  - Generate the sprite file with the provided script
- - Fill, scale and manipulate the icons as you wish
+ - Fill, scale and manipulate your icons
 
 ## Installation
 
@@ -77,12 +77,7 @@ Now that the web component is registered, you can invoke using the `svg-icon` ta
 ></svg-icon>
 ```
 
-### Using inside of Angular or React
-
-The SVG-Icon web component matches perfectly with SPA like Angular or React
-
- - [React integration example](./INTEGRATION.md#user-content-react) 
- - [Angular integration example](./INTEGRATION.md#user-content-angular) 
+Above markup will render the icon that had the filename `explore.svg` and is now included in the sprite.
 
 ## Options
 
@@ -90,12 +85,12 @@ The SVG-Icon web component matches perfectly with SPA like Angular or React
 - `width` *optional* - width of the svg in any length unit, i.e. `32px`, `50%`, `auto` etc., default is `100%`
 - `height` *optional* - the height of the svg in any length unit
 - `classes` *optional* - class name(s) separated by spaces
-- `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available
+- `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available 
 
 ## Coloring
 
 This icon pattern works best when applied on single color icons (SVGs that do not have
-fill or stroke attributes). This enables you to use CSS rules to change the icons color:
+fill or stroke attributes). This enables you to use CSS rules to change the icon's color:
 
 ```scss
 svg-icon {
@@ -119,6 +114,13 @@ Set the `viewBox` property manually to match the size of the exported shape. A c
   viewBox="0 0 24 24"
 ></svg-icon>
 ```
+
+### Using inside of Angular or React
+
+The SVG-Icon web component matches perfectly with SPA like Angular or React
+
+ - [React integration example](./INTEGRATION.md#user-content-react) 
+ - [Angular integration example](./INTEGRATION.md#user-content-angular)
 
 See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
 Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).

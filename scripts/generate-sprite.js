@@ -34,7 +34,7 @@ class SvgIconSpriteGenerator {
    */
   parseFiles() {
     // PWD = working directory when the process was started
-    const workingPath = path.resolve(process.env.PWD, this.folder);
+    const workingPath = path.resolve(process.cwd(), this.folder);
 
     console.log('Running svg-icon-sprite generator...');
 
