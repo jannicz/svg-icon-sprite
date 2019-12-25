@@ -14,6 +14,11 @@ const colorLabel = document.querySelector('[for="color"] span');
 const icon = document.querySelector('.manipulation svg-icon');
 let viewBox = '0 0 24 24';
 
+// Polyfill forEach for NodeLists
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
 /**
  * Onload hover effect
  */
