@@ -2,7 +2,7 @@
 
 ## Integration Examples
 
-First, add this lib to your `package.json`.
+First, add the lib to your node-modules and `package.json`.
 
 ### React
 
@@ -48,8 +48,10 @@ import 'svg-icon-sprite';
 Now you can use the `svg-icon` tag inside your template (`.html` file)
 
 ```html
-<svg-icon src="assets/sprite.svg#bunsen-burner"></svg-icon>
+<svg-icon src="assets/sprites/sprite.svg#bunsen-burner"></svg-icon>
 ```
+
+See the full [example on codesandbox](https://codesandbox.io/s/happy-chatelet-zsl93)
 
 ## Author & License
 - Jan Suwart | MIT License
