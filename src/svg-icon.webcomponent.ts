@@ -16,6 +16,9 @@ class SvgIcon extends HTMLElement {
   classes: string;
   viewBox: string;
 
+  // Default settings
+  public defaultPath = 'assets/sprites/sprite.svg';
+
   // Private variables
   private cssStyle: string = `fill: currentColor;`;
   private svgEl: SVGElement;
@@ -47,7 +50,8 @@ class SvgIcon extends HTMLElement {
   attributeChangedCallback(property, oldValue, newValue) {
     switch (property) {
       case SvgAttr.Src:
-        this.src = newValue;
+        const containsPath = newValue.includes('#');
+        this.src = containsPath ? newValue : this.defaultPath + '#' + newValue;
         break;
       case SvgAttr.Width:
         this.width = newValue;
