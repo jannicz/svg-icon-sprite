@@ -45,11 +45,11 @@ using the [svg symbols technique](https://css-tricks.com/svg-symbol-good-choice-
 
 ### In static web pages
 
-Simply import it using the script tag in your HTML head
+Simply reference the main file using the script tag in your HTML head
 
 ```html
 <head>
-  <script type="module" src="node_modules/svg-icon-sprite/dist/svg-icon-sprite.js"></script>
+  <script type="module" src="svg-icon-sprite/dist/svg-icon-sprite.js"></script>
 </head>
 ```
 
@@ -87,6 +87,9 @@ Above markup will render the icon that had the filename `explore.svg` and is now
 - `classes` *optional* - class name(s) separated by spaces
 - `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available 
 
+__Note:__ Leaving out the path and just passing in the icon name (`src="explore"`) will automatically reference the default
+path which is `assets/sprites/sprite.svg`.
+
 ## Coloring
 
 This icon pattern works best when applied on single color icons (SVGs that do not have
@@ -115,6 +118,11 @@ Set the `viewBox` property manually to match the size of the exported shape. A c
 ></svg-icon>
 ```
 
+See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
+Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
+
+## Integration
+
 ### Using inside of Angular or React
 
 The SVG-Icon web component matches perfectly with SPA like Angular or React
@@ -122,10 +130,7 @@ The SVG-Icon web component matches perfectly with SPA like Angular or React
  - [React integration example](./INTEGRATION.md#user-content-react) 
  - [Angular integration example](./INTEGRATION.md#user-content-angular)
 
-See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
-Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
-
-## Polyfills
+## Polyfills and browser support
 
 As Web Components are not supported in all browsers, you might want to install a polyfill
 
@@ -133,13 +138,14 @@ As Web Components are not supported in all browsers, you might want to install a
 npm i @webcomponents/webcomponentsjs
 ```
 
-and include it in the head of your index.html
+and include it in the head of your `index.html`
 
 ```html
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 ```
 
-To learn more, read [this](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs).
+This should enable support in all evergreen browsers (also including Edge, Safari 9+).
+To learn more, read [this](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#browser-support).
 
 ## Author & License
 - Jan Suwart | MIT License
