@@ -17,7 +17,7 @@ class SvgIcon extends HTMLElement {
   viewBox: string;
 
   // Default settings
-  public defaultPath = '/assets/sprites/sprite.svg';
+  public defaultPath = 'assets/sprites/sprite.svg';
 
   // Private variables
   private cssStyle: string = `fill: currentColor;`;
