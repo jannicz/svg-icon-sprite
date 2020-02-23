@@ -122,6 +122,7 @@ small {
 }
 .controls.inline {
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .controls input[type="range"] {
   width: 200px;
