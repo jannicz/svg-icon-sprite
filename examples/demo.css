@@ -109,7 +109,6 @@ small {
 .row.end {
   justify-content: flex-start;
 }
-.col {}
 .center {
   display: flex;
   align-items: center;
@@ -196,4 +195,14 @@ small {
 
 .fill-opacity {
   fill-opacity: 0.5;
+}
+
+/* Onload Example */
+
+#more-example-list > li {
+  padding-right: 10px;
+}
+
+.onload:hover, .onload:focus {
+  color: #8BEACC;
 }
