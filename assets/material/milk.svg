@@ -1,1 +1,21 @@
-<svg id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m346 167v75h-30v195l-120 16-150-16v-60c4.14 0 7.89-1.68 10.6-4.4 2.72-2.71 4.4-6.46 4.4-10.6v-120c0-8.28-6.72-15-15-15v-60l150-12z" fill="#76e2f8"/><path d="m346 167v75h-30v195l-120 16v-298z" fill="#4bb9ec"/><path d="m346 167h-300l30-90 120-21.46 120 21.46z" fill="#e6f5fa"/><path d="m346 167h-150v-111.46l120 21.46z" fill="#c8e1e6"/><path d="m316 437v45c0 16.569-13.431 30-30 30h-240v-75z" fill="#e6f5fa"/><path d="m316 437v45c0 16.569-13.431 30-30 30h-90v-75z" fill="#c8e1e6"/><path d="m46 227h195v150h-195z" fill="#e6f5fa"/><path d="m196 227h45v150h-45z" fill="#c8e1e6"/><path d="m76 0h240v77h-240z" fill="#76e2f8"/><path d="m196 0h120v77h-120z" fill="#4bb9ec"/><path d="m466 212v105c0 8.28-6.72 15-15 15h-150c-8.28 0-15-6.72-15-15v-105z" fill="#c8e1e6"/><path d="m466 212v105c0 8.28-6.72 15-15 15h-75v-120z" fill="#aac8d2"/><path d="m286 317h180v195h-180z" fill="#e6f5fa"/><path d="m376 317h90v195h-90z" fill="#c8e1e6"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="milk" fill-rule="nonzero">
+            <path d="M17,7.56375839 L17,11.0872483 L15.3,11.0872483 L15.3,20.2483221 L8.5,21 L0,20.2483221 L0,17.4295302 C0.2346,17.4295302 0.4471,17.350604 0.600666667,17.2228188 C0.7548,17.0955034 0.85,16.9193289 0.85,16.7248322 L0.85,11.0872483 C0.85,10.698255 0.4692,10.3825503 0,10.3825503 L0,7.56375839 L8.5,7 L17,7.56375839 Z" id="Path" fill="#76E2F8"></path>
+            <polygon id="Path" fill="#4BB9EC" points="17 7.56375839 17 11.0872483 15.2 11.0872483 15.2 20.2483221 8 21 8 7"></polygon>
+            <polygon id="Path" fill="#E6F5FA" points="17 7 0 7 1.7 2.96267719 8.5 2 15.3 2.96267719"></polygon>
+            <polygon id="Path" fill="#C8E1E6" points="17 7 8 7 8 2 15.2 2.96267719"></polygon>
+            <path d="M15,21 L15,22.8 C15,23.46276 14.2538333,24 13.3333333,24 L0,24 L0,21 L15,21 Z" id="Path" fill="#E6F5FA"></path>
+            <path d="M15,21 L15,22.8 C15,23.46276 14.216525,24 13.25,24 L8,24 L8,21 L15,21 Z" id="Path" fill="#C8E1E6"></path>
+            <polygon id="Path" fill="#E6F5FA" points="0 11 11 11 11 18 0 18"></polygon>
+            <polygon id="Path" fill="#C8E1E6" points="8 11 11 11 11 18 8 18"></polygon>
+            <polygon id="Path" fill="#76E2F8" points="2 0 16 0 16 3 2 3"></polygon>
+            <polygon id="Path" fill="#4BB9EC" points="8 0 15 0 15 3 8 3"></polygon>
+            <path d="M24,11 L24,15.375 C24,15.72 23.6266667,16 23.1666667,16 L14.8333333,16 C14.3733333,16 14,15.72 14,15.375 L14,11 L24,11 Z" id="Path" fill="#C8E1E6"></path>
+            <path d="M24,11 L24,15.375 C24,15.72 23.6266667,16 23.1666667,16 L19,16 L19,11 L24,11 Z" id="Path" fill="#AAC8D2"></path>
+            <polygon id="Path" fill="#E6F5FA" points="14 15 24 15 24 24 14 24"></polygon>
+            <polygon id="Path" fill="#C8E1E6" points="19 15 24 15 24 24 19 24"></polygon>
+        </g>
+    </g>
+</svg>

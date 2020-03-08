@@ -12,6 +12,9 @@ const typeLabel = document.querySelector('[for="type"] span');
 const classesLabel = document.querySelector('[for="classes"] span');
 const colorLabel = document.querySelector('[for="color"] span');
 const icon = document.querySelector('.manipulation svg-icon');
+const svgIconNode = document.querySelector('#svg-icon-node');
+const codePreview = document.querySelector('#code-preview');
+const codePreviewTemplate = document.querySelector('#code-preview').textContent;
 let viewBox = '0 0 24 24';
 
 // Polyfill forEach for NodeLists
@@ -45,18 +48,24 @@ typeInput.addEventListener('change', (event) => {
   icon.setAttribute('src', newIconSrc);
   typeLabel.textContent = newIconSrc;
   console.log('Change src to', newIconSrc);
+
+  updateCodePreview();
 });
 sizeInput.addEventListener('change', (event) => {
   let size = event.target.value + 'px';
   icon.setAttribute('width', size);
   sizeLabel.textContent = size;
   console.log('Change width to', size);
+
+  updateCodePreview();
 });
 colorInput.addEventListener('change', (event) => {
   let color = event.target.value;
   console.log('Change color to', color);
   icon.setAttribute('style', 'color: ' + color + ';');
   colorLabel.textContent = color;
+
+  updateCodePreview();
 });
 classesInput.addEventListener('change', (event) => {
   let classNr = event.target.value;
@@ -76,6 +85,8 @@ classesInput.addEventListener('change', (event) => {
   }
   classesLabel.textContent = className;
   console.log('Change icon class to', className);
+
+  updateCodePreview();
 });
 viewBoxEnableInput.addEventListener('change', (event) => {
   const enabled = event.target.checked;
@@ -91,6 +102,8 @@ viewBoxEnableInput.addEventListener('change', (event) => {
       element.setAttribute('disabled', 'disabled');
     });
   }
+
+  updateCodePreview();
 });
 viewBox1Input.addEventListener('change', () => setViewBox());
 viewBox2Input.addEventListener('change', () => setViewBox());
@@ -101,4 +114,23 @@ function setViewBox() {
   viewBox = `${viewBox1Input.value} ${viewBox2Input.value} ${viewBox3Input.value} ${viewBox4Input.value}`;
   icon.setAttribute('viewBox', viewBox);
   console.log('Setting viewBox to', viewBox);
+
+  updateCodePreview();
 }
+
+function updateCodePreview() {
+  const el = svgIconNode.querySelector('svg-icon');
+  let attributeString = '';
+
+  for (let i = 0; i < el.attributes.length; i++) {
+    const attrib = el.attributes[i];
+
+    if (attrib.specified) {
+      attributeString += '\n  ' + attrib.name + '="' + attrib.value + '"';
+    }
+  }
+
+  codePreview.textContent = codePreviewTemplate.replace('${attributes}', attributeString);
+}
+
+updateCodePreview();

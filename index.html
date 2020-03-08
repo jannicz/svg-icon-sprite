@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="Jan Suwart">
+  <meta name="application-name" content="Name of Your App" data-svg-sprite-path="./assets/sprites/sprite.svg">
   <title>SVG Icon Sprite Demo</title>
   <link rel="stylesheet" type="text/css" href="examples/demo.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -71,7 +72,7 @@
             src="assets/sprites/sprite.svg#bear"
             width="64px"
             height="64px"
-            viewBox="0 0 512 512"
+            viewBox="0 0 24 24"
             classes="foo bear"
           ></svg-icon>
         </li>
@@ -80,7 +81,7 @@
             src="assets/sprites/sprite.svg#milk"
             width="64px"
             height="64px"
-            viewBox="0 0 512 512"
+            viewBox="0 0 24 24"
             classes="foo milk"
           ></svg-icon>
         </li>
@@ -91,7 +92,7 @@
       <h2>Manipulation</h2>
 
       <div class="row">
-        <div class="col center manipulation">
+        <div class="col center manipulation" id="svg-icon-node">
           <svg-icon
             src="chart-24px"
             width="110px"
@@ -153,6 +154,14 @@
             <input type="color" id="color" name="color"
                    value="#ffffff">
           </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col" style="width: 100%;">
+          <pre id="code-preview">
+&lt;svg-icon ${attributes}&gt;
+&lt;/svg-icon&gt;</pre>
         </div>
       </div>
 

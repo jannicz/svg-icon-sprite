@@ -86,9 +86,13 @@ class SvgIconSpriteGenerator {
     this.elementsChanged++;
 
     const symbolEl = file
+      .replace(/<\?xml.*?\?>/, '')
       .replace(/ id=".*?"/, '')
+      .replace(/ version=".*?"/, '')
+      .replace(/ xmlns=".*?"/, '')
+      .replace(/ xmlns:xlink=".*?"/, '')
       .replace('<svg', `<symbol id="${name}"`)
-      .replace('</svg>', '</symbol>');
+      .replace('</svg>', '</symbol>\n');
 
     // console.log('\nProcessing SVG file', symbolEl, '\n');
 

@@ -85,10 +85,7 @@ Above markup will render the icon that had the filename `explore.svg` and is now
 - `width` *optional* - width of the svg in any length unit, i.e. `32px`, `50%`, `auto` etc., default is `100%`
 - `height` *optional* - the height of the svg in any length unit
 - `classes` *optional* - class name(s) separated by spaces
-- `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available 
-
-__Note:__ Leaving out the path and just passing in the icon name (`src="explore"`) will automatically reference the default
-path which is `assets/sprites/sprite.svg`.
+- `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available
 
 ## Coloring
 
@@ -120,6 +117,18 @@ Set the `viewBox` property manually to match the size of the exported shape. A c
 
 See the viewBox [example](https://jannicz.github.io/svg-icon-sprite/examples/scaling.html) for further details.
 Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
+
+### Default sprite path
+
+You can set the default sprite path by adding the attribute `data-svg-sprite-path` to any meta tag in your html head:
+ 
+```html
+<head>
+  <meta name="application-name" content="Name of Your App" data-svg-sprite-path="../assets/sprites/sprite.svg">
+</head>
+```
+ 
+From now on you just nee to pass the icon name as src attribute (`src="explore"`).
 
 ## Integration
 

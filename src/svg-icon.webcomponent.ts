@@ -17,11 +17,13 @@ class SvgIcon extends HTMLElement {
   viewBox: string;
 
   // Default settings
-  public defaultPath = 'assets/sprites/sprite.svg';
+  public defaultPath;
 
   // Private variables
   private cssStyle: string = `fill: currentColor;`;
   private svgEl: SVGElement;
+  private metaEl: HTMLElement;
+  private metaPathSel: string = `meta[data-svg-sprite-path]`;
 
   static get observedAttributes() {
     return [
@@ -35,6 +37,12 @@ class SvgIcon extends HTMLElement {
 
   constructor() {
     super();
+
+    this.metaEl = document.head.querySelector(this.metaPathSel);
+
+    if (this.metaEl?.dataset?.svgSpritePath) {
+      this.defaultPath = this.metaEl.dataset.svgSpritePath;
+    }
   }
 
   connectedCallback() {
@@ -47,11 +55,19 @@ class SvgIcon extends HTMLElement {
   adoptedCallback() {
   }
 
-  attributeChangedCallback(property, oldValue, newValue) {
+  /**
+   * Webcomponent callback that is called each time the any attribute changed
+   */
+  attributeChangedCallback(property: SvgAttr, oldValue: string, newValue: string) {
     switch (property) {
       case SvgAttr.Src:
         const containsPath = newValue.includes('#');
-        this.src = containsPath ? newValue : this.defaultPath + '#' + newValue;
+
+        if (!containsPath && this.defaultPath) {
+          this.src = this.defaultPath + '#' + newValue;
+        } else if (newValue) {
+          this.src = newValue;
+        }
         break;
       case SvgAttr.Width:
         this.width = newValue;
@@ -72,7 +88,9 @@ class SvgIcon extends HTMLElement {
     }
   }
 
-  // Updates a single property that was changed
+  /**
+   * Updates a single property that was changed
+   */
   updateByProperty(property: SvgAttr) {
     switch (property) {
       case SvgAttr.Src:
@@ -101,8 +119,10 @@ class SvgIcon extends HTMLElement {
     }
   }
 
+  /**
+   * Sets all mandatory attributes and generates the SVG markup
+   */
   render() {
-    // Mandatory attributes and the markup
     this.innerHTML = `
       <svg width="${this.width}" height="${this.height}" style="${this.cssStyle}">
         <use xlink:href="${this.src}" style="${this.cssStyle}">
