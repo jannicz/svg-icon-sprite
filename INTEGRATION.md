@@ -28,6 +28,23 @@ class MyClass extends React.Component {
 
 A thorough React example you will find on [codesandbox](https://codesandbox.io/s/fervent-northcutt-lvupd)
 
+#### Next.js
+
+If you use server side rendering, i.e. in combination with Next.js, you'll have to
+dynamically import `svg-icon-sprite` from your node modules. Following example shows the
+integration into the `App.jsx` (root component) using functional component syntax.
+
+```jsx harmony
+const App = props => {
+  useEffect(() => {
+    import('svg-icon-sprite');
+  }, []);
+}
+```
+
+From now on you can invoke `svg-icon` both in server side and client side rendered
+subcomponents (as shown in the example above).
+
 ### Angular
 
 In order to use Web Components in Angular, you must fist add `CUSTOM_ELEMENTS_SCHEMA` in `app.module.ts`

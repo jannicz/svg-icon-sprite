@@ -1,7 +1,7 @@
 {
   "name": "svg-icon-sprite",
-  "version": "0.9.0",
-  "description": "A Web Component for generating and including SVG spites",
+  "version": "1.0.0",
+  "description": "A Web Component for generating and including SVG sprites",
   "main": "dist/svg-icon-sprite.js",
   "bugs": {
     "url": "https://github.com/jannicz/svg-icon-sprite/issues"

@@ -120,7 +120,7 @@ Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
 
 ### Default sprite path
 
-You can set the default sprite path by adding the attribute `data-svg-sprite-path` to any meta tag in your html head:
+You can set the default sprite path by adding the attribute `data-svg-sprite-path` to any meta tag in your html head
  
 ```html
 <head>
@@ -128,7 +128,7 @@ You can set the default sprite path by adding the attribute `data-svg-sprite-pat
 </head>
 ```
  
-From now on you just nee to pass the icon name as src attribute (`src="explore"`).
+From now on you just need to pass the icon name as src attribute, i.e. `src="explore"`
 
 ## Integration
 
@@ -136,7 +136,7 @@ From now on you just nee to pass the icon name as src attribute (`src="explore"`
 
 The SVG-Icon web component matches perfectly with SPA like Angular or React
 
- - [React integration example](./INTEGRATION.md#user-content-react) 
+ - [React & Next.js integration example](./INTEGRATION.md#user-content-react) 
  - [Angular integration example](./INTEGRATION.md#user-content-angular)
 
 ## Polyfills and browser support
