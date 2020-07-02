@@ -7,7 +7,7 @@ import { SvgAttr } from './svg-attr.enum';
  * @author Jan Suwart
  * @license MIT
  */
-class SvgIcon extends HTMLElement {
+export class SvgIcon extends HTMLElement {
 
   // SVG Attributes
   src: string;
