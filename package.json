@@ -13,8 +13,9 @@
   "scripts": {
     "start": "webpack-dev-server --config-name default --mode development --open",
     "build": "npm run test && webpack --config-name prod",
-    "test": "npx jest",
-    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/material --output=assets/sprites/sprite.svg"
+    "test": "npx jest --verbose",
+    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/material --output=assets/sprites/sprite.svg",
+    "generate:sprite-stripped": "node scripts/generate-sprite.js --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg"
   },
   "author": "Jan Suwart",
   "license": "MIT",

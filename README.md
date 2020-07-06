@@ -31,8 +31,15 @@ Add the following line to your npm scripts
 }
 ```
 
-in which `--folder` is the path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
-and `--output` is the sprite destination, i.e. `--output=assets/sprites/sprite.svg`. Afterwards run it via
+where following arguments can be passed
+
+Property   | Desc.
+---------- | ------------
+`--folder` | Path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
+`--output` | Sprite destination, i.e. `--output=assets/sprites/sprite.svg`
+`--strip`  | Additionally removes all `fill` and `stroke` attributes
+
+Afterwards run it via
 
 ```
 npm run generate:sprite
