@@ -9,6 +9,7 @@ const minimist = require('minimist');
  * Run using "node ./generate-sprite [options] with following options:
  * --folder=folder/subfolder
  * --output=folder/filename.svg
+ * --strip
  *
  * @author Jan Suwart
  * @licence MIT
@@ -23,6 +24,7 @@ class SvgIconSpriteGenerator {
     // Configuration variables
     this.folder = args.folder;
     this.output = args.output || 'sprite.svg';
+    this.strip = args.strip || false;
 
     // Private variables
     this.elementsChanged = 0;
@@ -73,7 +75,7 @@ class SvgIconSpriteGenerator {
 
   /**
    * @param {string} file - full path of current file
-   * @param {string} file - name of current file
+   * @param {string} name - name of current file
    * @return {string} the created symbol element as string
    */
   appendSymbol(file, name) {
@@ -85,7 +87,7 @@ class SvgIconSpriteGenerator {
 
     this.elementsChanged++;
 
-    const symbolEl = file
+    let symbolEl = file
       .replace(/<\?xml.*?\?>/, '')
       .replace(/ id=".*?"/, '')
       .replace(/ version=".*?"/, '')
@@ -95,6 +97,10 @@ class SvgIconSpriteGenerator {
       .replace('</svg>', '</symbol>\n');
 
     // console.log('\nProcessing SVG file', symbolEl, '\n');
+
+    if (this.strip) {
+      symbolEl = this.stripProperties(symbolEl);
+    }
 
     return symbolEl;
   }
@@ -143,11 +149,16 @@ class SvgIconSpriteGenerator {
   }
 
   /**
-   * @param {string} string - input string
-   * TODO implement removal of fill and stroke
+   * Removes fill and stroke attributes while preserving fill="none" to allow hollow elements
+   * @param {string} string - input SVG as string
+   * @return {string} stripped SVG as string
    */
-  stripProperties(string) {
+  stripProperties(svg) {
+    const stripRe = new RegExp(' (stroke|fill)="((?!none).*?)"', 'igm');
 
+    // console.log('\nStripping from SVG file', svg, svg.match(stripRe), '\n');
+
+    return svg.replace(stripRe, '');
   }
 }
 
@@ -156,3 +167,5 @@ const argv = minimist(process.argv.slice(2));
 // Create the instance and set the options
 const spriteGenerator = new SvgIconSpriteGenerator(argv);
 spriteGenerator.parseFiles();
+
+module.exports = SvgIconSpriteGenerator;

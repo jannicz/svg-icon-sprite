@@ -7,7 +7,7 @@ import { SvgAttr } from './svg-attr.enum';
  * @author Jan Suwart
  * @license MIT
  */
-class SvgIcon extends HTMLElement {
+export class SvgIcon extends HTMLElement {
 
   // SVG Attributes
   src: string;
@@ -24,6 +24,7 @@ class SvgIcon extends HTMLElement {
   private svgEl: SVGElement;
   private metaEl: HTMLElement;
   private metaPathSel: string = `meta[data-svg-sprite-path]`;
+  private errPrefix: string = `SVG-Icon Webcomponent:`;
 
   static get observedAttributes() {
     return [
@@ -37,12 +38,6 @@ class SvgIcon extends HTMLElement {
 
   constructor() {
     super();
-
-    this.metaEl = document.head.querySelector(this.metaPathSel);
-
-    if (this.metaEl?.dataset?.svgSpritePath) {
-      this.defaultPath = this.metaEl.dataset.svgSpritePath;
-    }
   }
 
   connectedCallback() {
@@ -63,10 +58,28 @@ class SvgIcon extends HTMLElement {
       case SvgAttr.Src:
         const containsPath = newValue.includes('#');
 
-        if (!containsPath && this.defaultPath) {
-          this.src = this.defaultPath + '#' + newValue;
-        } else if (newValue) {
+        if (!containsPath && !this.defaultPath) {
+          // The icon uses a shortcut notation, find the default sprite path
+          this.metaEl = document.head.querySelector(this.metaPathSel);
+
+          if (this.metaEl?.dataset?.svgSpritePath) {
+            this.defaultPath = this.metaEl.dataset.svgSpritePath;
+          }
+        }
+
+        if (!newValue) {
+          console.warn(`${this.errPrefix} src attribute missing`);
+          return;
+        }
+
+        if (containsPath) {
           this.src = newValue;
+        } else if (!containsPath && this.defaultPath) {
+          // Path not included but defaultPath is available
+          this.src = `${this.defaultPath}#${newValue}`;
+        } else {
+          // Neither path nor default path (in meta tag) included
+          console.warn(`${this.errPrefix} "${newValue}" missing the path to the sprite and no default path is set`);
         }
         break;
       case SvgAttr.Width:

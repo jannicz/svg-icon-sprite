@@ -1,7 +1,7 @@
 {
   "name": "svg-icon-sprite",
-  "version": "0.9.0",
-  "description": "A Web Component for generating and including SVG spites",
+  "version": "1.0.0",
+  "description": "A Web Component for generating and including SVG sprites",
   "main": "dist/svg-icon-sprite.js",
   "bugs": {
     "url": "https://github.com/jannicz/svg-icon-sprite/issues"
@@ -12,15 +12,22 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config-name default --mode development --open",
-    "build": "webpack --config-name prod",
-    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/material --output=assets/sprites/sprite.svg"
+    "build": "npm run test && webpack --config-name prod",
+    "test": "npx jest --verbose",
+    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/material --output=assets/sprites/sprite.svg",
+    "generate:sprite-stripped": "node scripts/generate-sprite.js --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg"
   },
   "author": "Jan Suwart",
   "license": "MIT",
   "devDependencies": {
+    "@testing-library/dom": "^7.19.0",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@types/jest": "^26.0.3",
     "@webcomponents/webcomponentsjs": "^2.4.2",
     "babel-loader": "^8.0.6",
     "babel-preset-es2015": "^6.24.1",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.0",

@@ -31,8 +31,15 @@ Add the following line to your npm scripts
 }
 ```
 
-in which `--folder` is the path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
-and `--output` is the sprite destination, i.e. `--output=assets/sprites/sprite.svg`. Afterwards run it via
+where following arguments can be passed
+
+Property   | Desc.
+---------- | ------------
+`--folder` | Path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
+`--output` | Sprite destination, i.e. `--output=assets/sprites/sprite.svg`
+`--strip`  | Additionally removes all `fill` and `stroke` attributes
+
+Afterwards run it via
 
 ```
 npm run generate:sprite
@@ -120,7 +127,7 @@ Still troubled? Then read [this article](https://css-tricks.com/scale-svg/).
 
 ### Default sprite path
 
-You can set the default sprite path by adding the attribute `data-svg-sprite-path` to any meta tag in your html head:
+You can set the default sprite path by adding the attribute `data-svg-sprite-path` to any meta tag in your html head
  
 ```html
 <head>
@@ -128,7 +135,7 @@ You can set the default sprite path by adding the attribute `data-svg-sprite-pat
 </head>
 ```
  
-From now on you just nee to pass the icon name as src attribute (`src="explore"`).
+From now on you just need to pass the icon name as src attribute, i.e. `src="explore"`
 
 ## Integration
 
@@ -136,7 +143,7 @@ From now on you just nee to pass the icon name as src attribute (`src="explore"`
 
 The SVG-Icon web component matches perfectly with SPA like Angular or React
 
- - [React integration example](./INTEGRATION.md#user-content-react) 
+ - [React & Next.js integration example](./INTEGRATION.md#user-content-react) 
  - [Angular integration example](./INTEGRATION.md#user-content-angular)
 
 ## Polyfills and browser support
