@@ -41,7 +41,7 @@ iconElems.forEach((icon, i) => {
 /**
  * Demo Controls
  */
-typeInput.addEventListener('change', (event) => {
+typeInput.addEventListener('input', (event) => {
   let number = event.target.value;
   let demoList = document.querySelectorAll('.demo-list li');
   let newIconSrc = demoList[number].querySelector('svg-icon').getAttribute('src');
@@ -51,7 +51,7 @@ typeInput.addEventListener('change', (event) => {
 
   updateCodePreview();
 });
-sizeInput.addEventListener('change', (event) => {
+sizeInput.addEventListener('input', (event) => {
   let size = event.target.value + 'px';
   icon.setAttribute('width', size);
   sizeLabel.textContent = size;
@@ -59,7 +59,7 @@ sizeInput.addEventListener('change', (event) => {
 
   updateCodePreview();
 });
-colorInput.addEventListener('change', (event) => {
+colorInput.addEventListener('input', (event) => {
   let color = event.target.value;
   console.log('Change color to', color);
   icon.setAttribute('style', 'color: ' + color + ';');
@@ -67,7 +67,7 @@ colorInput.addEventListener('change', (event) => {
 
   updateCodePreview();
 });
-classesInput.addEventListener('change', (event) => {
+classesInput.addEventListener('input', (event) => {
   let classNr = event.target.value;
   let className;
   if (classNr == 1) {
@@ -83,7 +83,7 @@ classesInput.addEventListener('change', (event) => {
   } else {
     icon.removeAttribute('classes');
   }
-  classesLabel.textContent = className;
+  classesLabel.textContent = className || 'none';
   console.log('Change icon class to', className);
 
   updateCodePreview();
