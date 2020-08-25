@@ -37,7 +37,7 @@ Property   | Desc.
 ---------- | ------------
 `--folder` | Path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
 `--output` | Sprite destination, i.e. `--output=assets/sprites/sprite.svg`
-`--strip`  | Additionally removes all `fill` and `stroke` attributes
+`--strip`  | Optionally removes `fill` and `stroke` attributes from the SVG
 
 Afterwards run it via
 
