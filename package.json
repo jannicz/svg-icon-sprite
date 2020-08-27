@@ -20,7 +20,7 @@
     "generate:sprite-stripped": "node scripts/generate-sprite.js --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg"
   },
   "bin": {
-    "generate-sprite": "./scripts/generate-sprite.js"
+    "generate-sprite": "./scripts/cli.js"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.22.6",

@@ -123,9 +123,10 @@ small {
   flex-direction: row;
   flex-wrap: wrap;
 }
-.controls input[type="range"] {
+.controls input[type="range"], .controls input[type="range" i] {
   width: 200px;
   height: 22px;
+  color: #CFF0A2;
 }
 .controls input[type="number"], .controls input[type="color"] {
   width: 40px;

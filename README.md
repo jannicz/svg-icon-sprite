@@ -1,6 +1,6 @@
 # SVG Icon Sprite - Web Component
 
-A Web Component to include and manipulate SVGs from a generated sprite file
+A dependency-free Web Component to include and manipulate SVGs from a generated sprite file
 
 ## Demo
 
@@ -14,12 +14,6 @@ A Web Component to include and manipulate SVGs from a generated sprite file
  - Generate the sprite file with the provided script
  - Fill, scale and manipulate your icons
 
-## Installation
-
-```
-npm i -S svg-icon-sprite
-```
-
 ## Generating the sprite
 
 Each time you add an icon, you need to run a script generating the sprite.
@@ -27,7 +21,7 @@ Add the following line to your npm scripts
 
 ```json
 "scripts": {
-  "generate:sprite": "node node_modules/svg-icon-sprite/scripts/generate-sprite.js --folder=dir/subdir --output=dir/filename.svg"
+  "generate:sprite": "node node_modules/svg-icon-sprite/scripts/cli.js --folder=dir/subdir --output=dir/filename.svg"
 }
 ```
 
@@ -38,6 +32,7 @@ Property   | Desc.
 `--folder` | Path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
 `--output` | Sprite destination, i.e. `--output=assets/sprites/sprite.svg`
 `--strip`  | Optionally removes `fill` and `stroke` attributes from the SVG
+`--trim`   | Optionally removes all whitespaces (tabs, linebreaks etc.)
 
 Afterwards run it via
 

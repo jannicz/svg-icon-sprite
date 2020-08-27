@@ -4,11 +4,13 @@ const path = require('path');
 module.exports = [{
   name: 'default',
   mode: 'development',
-  entry: './src/svg-icon.webcomponent.ts',
+  entry: {
+    'svg-icon-sprite': './src/svg-icon.webcomponent.ts'
+  },
   devtool: 'inline-source-map',
   output: {
-    path: path.resolve(__dirname),
-    filename: 'dist/svg-icon-sprite.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -25,10 +27,12 @@ module.exports = [{
 }, {
   name: 'prod',
   mode: 'production',
-  entry: './src/svg-icon.webcomponent.ts',
+  entry: {
+    'svg-icon-sprite': './src/svg-icon.webcomponent.ts'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'svg-icon-sprite.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
