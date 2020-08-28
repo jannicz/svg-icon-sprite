@@ -160,15 +160,20 @@
       </div>
 
       <div class="row">
-        <div class="col" style="width: 100%;">
-          <pre id="code-preview" style="min-height: 110px;">
-&lt;svg-icon ${attributes}&gt;
-&lt;/svg-icon&gt;</pre>
+        <div class="col-70">
+          <pre style="min-height: 110px;"><code id="code-preview" >&lt;svg-icon ${attributes}&gt;
+&lt;/svg-icon&gt;</code></pre>
+        </div>
+        <div class="col-30">
+          <pre class="css"><code>svg-icon:hover {
+  color: #FF9493;
+}</code></pre>
         </div>
       </div>
 
       <div class="row end">
-        <small><em>Note:</em> fill/stroke manipulations will not apply on multi-color icons! ViewBox changes might differ across browsers!</small>
+        <small id="warning-fill" class="hidden"><em>Note:</em> CSS styles (on fill, stroke etc.) won't apply on multi-color icons containing exported fill="color" rules! <a href="https://css-tricks.com/gotchas-on-getting-svg-into-production/#exporting-stroke-on-fill-transparent" target="_blank">Explanation</a></small>
+        <small id="warning-viewBox" class="hidden"><em>Note:</em> Browsers might scale icons without a viewBox differently!</small>
       </div>
     </article>
 

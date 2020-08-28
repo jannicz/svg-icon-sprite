@@ -83,10 +83,50 @@ code {
   background-color: #333;
   font-family: Courier, monospace;
 }
+pre code {
+  background-color: inherit;
+}
+pre.css {
+  color: #FFC88E;
+}
 small {
   font-size: 80%;
   color: #333;
 }
+
+/* Layout */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.row.end {
+  justify-content: flex-start;
+}
+.col-70 {
+  width: 70%;
+}
+.col-30 {
+  width: calc(30% - 10px);
+  margin-left: 10px;
+}
+@media screen and (max-width: 767px) {
+  .col-70 {
+    width: 100%;
+  }
+  .col-30 {
+    margin: 10px 0 0;
+    width: 100%;
+  }
+}
+.hidden {
+  display: none;
+}
+
+/* Elements */
+
 .demo-list {
   display: flex;
   flex-wrap: wrap;
@@ -99,15 +139,6 @@ small {
 .demo-list-item:hover, .demo-list-item.focus {
   transform: scale(1.2);
   color: #fff;
-}
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-.row.end {
-  justify-content: flex-start;
 }
 .center {
   display: flex;
@@ -158,10 +189,13 @@ label[for="type"] {
   transition: color linear 0.05s;
 }
 .manipulation svg-icon:hover {
-  color: #FF9493 !important;
+  color: #FF9493;
 }
 .manipulation svg {
   border: 1px dotted #6e6e6e;
+}
+.manipulation svg:hover {
+  box-shadow: 1px 1px 2px #121212;
 }
 .scale-example {
   width: 100px;

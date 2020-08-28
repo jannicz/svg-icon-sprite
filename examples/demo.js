@@ -15,6 +15,8 @@ const icon = document.querySelector('.manipulation svg-icon');
 const svgIconNode = document.querySelector('#svg-icon-node');
 const codePreview = document.querySelector('#code-preview');
 const codePreviewTemplate = document.querySelector('#code-preview').textContent;
+const warningFill = document.querySelector('#warning-fill');
+const warningViewBox = document.querySelector('#warning-viewBox');
 let viewBox = '0 0 24 24';
 
 // Polyfill forEach for NodeLists
@@ -48,6 +50,12 @@ typeInput.addEventListener('input', (event) => {
   icon.setAttribute('src', newIconSrc);
   typeLabel.textContent = newIconSrc;
   console.log('Change src to', newIconSrc);
+
+  if (newIconSrc.includes('milk') || newIconSrc.includes('bear')) {
+    warningFill.classList.remove('hidden');
+  } else {
+    warningFill.classList.add('hidden');
+  }
 
   updateCodePreview();
 });
@@ -96,11 +104,13 @@ viewBoxEnableInput.addEventListener('change', (event) => {
     document.querySelectorAll('.viewbox-input').forEach((element) => {
       element.removeAttribute('disabled');
     });
+    warningViewBox.classList.add('hidden');
   } else {
     icon.removeAttribute('viewBox');
     document.querySelectorAll('.viewbox-input').forEach((element) => {
       element.setAttribute('disabled', 'disabled');
     });
+    warningViewBox.classList.remove('hidden');
   }
 
   updateCodePreview();
