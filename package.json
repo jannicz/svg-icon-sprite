@@ -16,11 +16,11 @@
     "start": "webpack-dev-server --config-name default --mode development --open",
     "build": "npm run test && webpack --config-name prod",
     "test": "npx jest --verbose",
-    "generate:sprite": "node scripts/generate-sprite.js --folder=assets/material --output=assets/sprites/sprite.svg",
-    "generate:sprite-stripped": "node scripts/generate-sprite.js --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg"
+    "generate:sprite": "svg-icon-generate --folder=assets/material --output=assets/sprites/sprite.svg",
+    "generate:sprite-stripped": "svg-icon-generate --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg"
   },
   "bin": {
-    "generate-sprite": "./scripts/cli.js"
+    "svg-icon-generate": "./scripts/cli.js"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.22.6",
