@@ -163,7 +163,7 @@ Parameter  | Explanation                              | Default
 Example usage
 
 ```
-svg-icon-generate --folder=assets/icons --output=assets/sprites/sprite.svg --strip
+svg-icon-generate --folder=assets/icons --output=assets/sprites/sprite.svg --trim
 ```
 
 The script will iterate all SVGs in the source folder and create a single sprite SVG file

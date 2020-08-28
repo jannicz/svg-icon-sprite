@@ -37,9 +37,6 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "dependencies": {
-    "minimist": "^1.2.5"
-  },
   "keywords": [
     "icon",
     "icons",
