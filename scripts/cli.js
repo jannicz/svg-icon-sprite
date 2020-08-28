@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const svgParser = require('./svg-parser.lib.js');
-const fs = require('fs');
 const path = require('path');
 
 /**
@@ -23,7 +22,6 @@ class SvgIconSpriteGenerator {
   trim = false;
   output = 'sprite.svg';
   folder;
-  elementsChanged = 0;
 
   constructor(args) {
     if (!args) {
@@ -32,9 +30,14 @@ class SvgIconSpriteGenerator {
 
     console.log('\nRunning svg-icon-sprite generator via CLI...\n');
 
-    args.forEach((arg, i) => {
-      // @see https://regexr.com/5avua
+    this.parseCliArgs(args);
+    // console.log('Class vars, output=>', this.output, 'folder =>', this.folder, 'strip =>', this.strip, 'trim =>', this.trim);
+  }
+
+  parseCliArgs(args) {
+    args.forEach((arg) => {
       const regex = /--(\w+)=?(.*)/i;
+      // @see https://regexr.com/5avua
       const match = arg.match(regex);
 
       if (match) {
@@ -62,58 +65,32 @@ class SvgIconSpriteGenerator {
       }
       // console.log('match =>', match);
     });
-    // console.log('Class vars, output=>', this.output, 'folder =>', this.folder, 'strip =>', this.strip, 'trim =>', this.trim);
+  }
+
+  createFileList(files, workingPath) {
+    if (!files.length) {
+      throw new Error(`No SVG files found in folder "${workingPath}"`);
+    }
+
+    return files.map(file => {
+      return { name: file, path: path.resolve(workingPath, file) };
+    });
   }
 
   /**
-   * Main parsing function
+   * Main parsing function, use current working directory as initial path
    */
   async parse() {
-    // PWD = working directory when the process was started
     const workingPath = path.resolve(process.cwd(), this.folder);
     const files = await svgParser.readDirectory(this.folder, 'svg');
+    const fileList = this.createFileList(files, workingPath);
 
-    let svgElement = this.iterateFiles(workingPath, files);
+    let { svgElement, elementsChanged } = svgParser.iterateFiles(fileList, this.strip, this.trim);
+
     svgElement = svgParser.wrapInSvgTag(svgElement);
 
-    if (this.trim) {
-      svgElement = svgParser.removeWhitespaces(svgElement);
-    }
-
     await svgParser.writeIconsToFile(this.output, svgElement);
-    console.log('\nWrote', this.elementsChanged, 'symbol elements in file', this.output);
-  }
-
-  iterateFiles(workingPath, files) {
-    let svgElems = '';
-
-    if (!files.length) {
-      console.log(`No SVG files found in folder "${workingPath}"`);
-      return;
-    }
-
-    const fullFilePath = files.map(file => {
-      return { name: file, path: path.resolve(workingPath, file) };
-    });
-
-    fullFilePath.forEach((fileObj) => {
-      try {
-        let file = fs.readFileSync(fileObj.path, 'utf8');
-        let name = fileObj.name.replace('.svg', '');
-        let symbolEl = svgParser.createSymbol(file, name);
-
-        if (this.strip) {
-          symbolEl = svgParser.stripProperties(symbolEl);
-        }
-
-        svgElems += symbolEl;
-        this.elementsChanged++;
-      } catch (e) {
-        console.warn('- Could not parse', fileObj.name, '==========> file skipped <==========');
-      }
-    });
-
-    return svgElems;
+    console.log('\nWrote', elementsChanged, 'symbol elements in file', this.output);
   }
 }
 
@@ -125,7 +102,7 @@ const spriteGenerator = new SvgIconSpriteGenerator(args);
 
 // Start parsing and generation sequence
 spriteGenerator.parse().catch(error => {
-  console.log('Could not read and parse directory because of error:', error);
+  console.log('Failed to parse icons because of error:', error);
 });
 
 module.exports = SvgIconSpriteGenerator;

@@ -7,6 +7,12 @@ const fs = require('fs');
  * @licence MIT
  */
 const svgParserLib = {
+
+  fgRed:    '\x1b[31m',
+  fgGreen:  '\x1b[32m',
+  fgYellow: '\x1b[33m',
+  fgReset:  '\x1b[0m',
+
   /**
    * @param {string} file - full path of current file
    * @param {string} name - name of current file
@@ -14,9 +20,9 @@ const svgParserLib = {
    */
   createSymbol: (file, name) => {
     if (!file || !name) {
-      throw new Error('No file found at ' + file);
+      throw new Error('No file found at ' + name);
     } else if (!file.includes('<svg')) {
-      throw new Error('No SVG node found in ' + file);
+      throw new Error('No SVG node found in ' + name);
     }
 
     let symbolEl = file
@@ -28,8 +34,7 @@ const svgParserLib = {
       .replace('<svg', `<symbol id="${name}"`)
       .replace('</svg>', '</symbol>\n');
 
-    console.log('- Creating SVG symbol from', name);
-
+    console.log('- Created SVG symbol from', svgParserLib.fgGreen + name + svgParserLib.fgReset);
     return symbolEl;
   },
 
@@ -42,14 +47,16 @@ const svgParserLib = {
   stripProperties: (svg) => {
     const stripRe = new RegExp(' (stroke|fill)="((?!none).*?)"', 'igm');
 
-    console.log('\nStripping from SVG file', svg, 'strip match =>', svg.match(stripRe), '\n');
+    if (svg.match(stripRe)) {
+      console.log('  and stripping following attributes', svg.match(stripRe));
+    }
 
     return svg.replace(stripRe, '');
   },
 
 
   /**
-   * Removes all whitespaces to save disc space
+   * Removes all whitespaces to reduce file size
    */
   removeWhitespaces: (svg) => {
     return svg
@@ -71,6 +78,48 @@ const svgParserLib = {
 
 
   /**
+   * Iterates the file array, retrieves each file and applies lib functions
+   * @param {{name: string, path: string}[]} files - List containing file references and names
+   * @param {boolean} [strip] - whether to remove fill/stroke attributes
+   * @param {boolean} [trim] - whether to remove all whitespaces
+   * @param {function} [retrieveFileFn] - alternative retrieval function, default is readFileSync
+   * @return {{elementsChanged: number, svgElement: string}} final SVG sprite as string
+   */
+  iterateFiles: (files, strip, trim, retrieveFileFn = svgParserLib.readFile) => {
+    let svgElement = '';
+    let elementsChanged = 0;
+
+    files.forEach((fileObj) => {
+      // console.log('Iterate file =>', fileObj, 'retrieveFileFn =>', retrieveFileFn);
+      try {
+        let file = retrieveFileFn(fileObj.path);
+        let name = fileObj.name.replace('.svg', '');
+        let symbolEl = svgParserLib.createSymbol(file, name);
+
+        if (strip) {
+          symbolEl = svgParserLib.stripProperties(symbolEl);
+        }
+
+        svgElement += symbolEl;
+        elementsChanged++;
+      } catch (e) {
+        console.warn(svgParserLib.fgRed + 'Could not parse', fileObj.name, 'because of error:' + svgParserLib.fgReset, e.message, '- file skipped!');
+      }
+    });
+
+    if (trim) {
+      svgElement = svgParserLib.removeWhitespaces(svgElement);
+    }
+
+    return { svgElement, elementsChanged };
+  },
+
+
+  readFile: (path) => {
+    return fs.readFileSync(path, 'utf8');
+  },
+
+  /**
    * Writes the string into a folder
    * @param {string} fullFileName - folder and filename
    * @param {string} outputString - the output that should be written
@@ -80,7 +129,7 @@ const svgParserLib = {
     return new Promise((resolve, reject) => {
       fs.writeFile(fullFileName, outputString, 'utf8', err => {
         if (err) {
-          console.error('Error writing file', err);
+          console.error(svgParserLib.fgRed + 'Error while writing file' + svgParserLib.fgReset, err);
           reject(err);
         } else {
           resolve(true)
@@ -111,7 +160,7 @@ const svgParserLib = {
             }
           });
 
-          console.log('Found folder "' + dirname + '" with ' + fileList.length + ' files of type "*.' + filetype + '"...\n');
+          console.log('Found folder "' + dirname + '" with', fileList.length, 'files of type "*.' + filetype + '"...\n');
 
           resolve(fileList);
         }
