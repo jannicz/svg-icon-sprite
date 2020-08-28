@@ -15,6 +15,8 @@ const icon = document.querySelector('.manipulation svg-icon');
 const svgIconNode = document.querySelector('#svg-icon-node');
 const codePreview = document.querySelector('#code-preview');
 const codePreviewTemplate = document.querySelector('#code-preview').textContent;
+const warningFill = document.querySelector('#warning-fill');
+const warningViewBox = document.querySelector('#warning-viewBox');
 let viewBox = '0 0 24 24';
 
 // Polyfill forEach for NodeLists
@@ -41,7 +43,7 @@ iconElems.forEach((icon, i) => {
 /**
  * Demo Controls
  */
-typeInput.addEventListener('change', (event) => {
+typeInput.addEventListener('input', (event) => {
   let number = event.target.value;
   let demoList = document.querySelectorAll('.demo-list li');
   let newIconSrc = demoList[number].querySelector('svg-icon').getAttribute('src');
@@ -49,9 +51,15 @@ typeInput.addEventListener('change', (event) => {
   typeLabel.textContent = newIconSrc;
   console.log('Change src to', newIconSrc);
 
+  if (newIconSrc.includes('milk') || newIconSrc.includes('bear')) {
+    warningFill.classList.remove('hidden');
+  } else {
+    warningFill.classList.add('hidden');
+  }
+
   updateCodePreview();
 });
-sizeInput.addEventListener('change', (event) => {
+sizeInput.addEventListener('input', (event) => {
   let size = event.target.value + 'px';
   icon.setAttribute('width', size);
   sizeLabel.textContent = size;
@@ -59,7 +67,7 @@ sizeInput.addEventListener('change', (event) => {
 
   updateCodePreview();
 });
-colorInput.addEventListener('change', (event) => {
+colorInput.addEventListener('input', (event) => {
   let color = event.target.value;
   console.log('Change color to', color);
   icon.setAttribute('style', 'color: ' + color + ';');
@@ -67,7 +75,7 @@ colorInput.addEventListener('change', (event) => {
 
   updateCodePreview();
 });
-classesInput.addEventListener('change', (event) => {
+classesInput.addEventListener('input', (event) => {
   let classNr = event.target.value;
   let className;
   if (classNr == 1) {
@@ -83,7 +91,7 @@ classesInput.addEventListener('change', (event) => {
   } else {
     icon.removeAttribute('classes');
   }
-  classesLabel.textContent = className;
+  classesLabel.textContent = className || 'none';
   console.log('Change icon class to', className);
 
   updateCodePreview();
@@ -96,11 +104,13 @@ viewBoxEnableInput.addEventListener('change', (event) => {
     document.querySelectorAll('.viewbox-input').forEach((element) => {
       element.removeAttribute('disabled');
     });
+    warningViewBox.classList.add('hidden');
   } else {
     icon.removeAttribute('viewBox');
     document.querySelectorAll('.viewbox-input').forEach((element) => {
       element.setAttribute('disabled', 'disabled');
     });
+    warningViewBox.classList.remove('hidden');
   }
 
   updateCodePreview();
