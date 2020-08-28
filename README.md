@@ -1,6 +1,6 @@
 # SVG Icon Sprite - Web Component
 
-A dependency-free Web Component to include and manipulate SVGs from a generated sprite file
+A Web Component to include and manipulate SVGs from a generated sprite file
 
 ## Demo
 
@@ -11,37 +11,13 @@ A dependency-free Web Component to include and manipulate SVGs from a generated 
 ## Use Cases
 
  - Serve all your SVG icons from a single file
- - Generate the sprite file with the provided script
  - Fill, scale and manipulate your icons
-
-## Generating the sprite
-
-Each time you add an icon, you need to run a script generating the sprite.
-Add the following line to your npm scripts
-
-```json
-"scripts": {
-  "generate:sprite": "node node_modules/svg-icon-sprite/scripts/cli.js --folder=dir/subdir --output=dir/filename.svg"
-}
-```
-
-where following arguments can be passed
-
-Property   | Desc.
----------- | ------------
-`--folder` | Path of the source files relative to your *package.json*, i.e. `--folder=assets/icons`
-`--output` | Sprite destination, i.e. `--output=assets/sprites/sprite.svg`
-`--strip`  | Optionally removes `fill` and `stroke` attributes from the SVG
-`--trim`   | Optionally removes all whitespaces (tabs, linebreaks etc.)
-
-Afterwards run it via
-
-```
-npm run generate:sprite
-```
-
-The script will iterate all SVGs in the source folder and create a single sprite SVG file
-using the [svg symbols technique](https://css-tricks.com/svg-symbol-good-choice-icons/).
+ - Optionally, [generate the sprite file](#generating-the-sprite) using the provided CLI script
+ 
+## Benefits
+ - dependency-free
+ - tiny 3KB (1.3KB gzipped)
+ - based on current web standards
 
 ## Import the component
 
@@ -100,8 +76,8 @@ svg-icon {
 }
 ```
 
-When using multi-color icons (icon that contain styles inside of their markup),
-you will only be able to apply CSS transforms (i.e. scale).
+When used with icons that contain styles inside their markup (multi-color),
+you will not be able to apply this CSS property without further work.
 
 ### Scaling and Sizing
 
@@ -143,7 +119,7 @@ The SVG-Icon web component matches perfectly with SPA like Angular or React
 
 ## Polyfills and browser support
 
-As Web Components are not supported in all browsers, you might want to install a polyfill
+As Web Components are not supported in older browsers, you might want to install a polyfill
 
 ```
 npm i @webcomponents/webcomponentsjs
@@ -157,6 +133,41 @@ and include it in the head of your `index.html`
 
 This should enable support in all evergreen browsers (also including Edge, Safari 9+).
 To learn more, read [this](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#browser-support).
+
+## Generating the sprite
+
+Each time you add an icon, you need to run a script generating the sprite.
+It is recommended to add the following line to your npm scripts
+
+```json
+"scripts": {
+  "generate:sprite": "svg-icon-generate --folder=dir/subdir --output=dir/filename.svg"
+}
+```
+
+That lets you run it via
+
+```
+npm run generate:sprite
+```
+
+You can pass following arguments the form `<param>=<value>`
+
+Parameter  | Explanation                              | Default
+---------- | ---------------------------------------- | -------
+`--folder` | Path of the source folder relative to your *package.json* |
+`--output` | Path and filename for the sprite output | `sprite.svg`
+`--strip`  | Whether to remove `fill` and `stroke` attributes | `false`
+`--trim`   | Whether to remove all whitespaces (tabs, linebreaks etc.) | `false`
+
+Example usage
+
+```
+svg-icon-generate --folder=assets/icons --output=assets/sprites/sprite.svg --strip
+```
+
+The script will iterate all SVGs in the source folder and create a single sprite SVG file
+using the [symbols technique](https://css-tricks.com/svg-symbol-good-choice-icons/).
 
 ## Author & License
 - Jan Suwart | MIT License
