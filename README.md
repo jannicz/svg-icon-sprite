@@ -55,13 +55,14 @@ Now that the web component is registered, you can invoke using the `svg-icon` ta
 ></svg-icon>
 ```
 
-Above markup will render the icon that had the filename `explore.svg` and is now included in the sprite.
+Above markup example will render the `explore` icon that is included in the
+file `assets/sprites/sprite.svg` as a symbol - [read how to generate](#generating-the-sprite).
 
 ## Options
 
-- `src` - icon source relative to your app folder, syntax is `folder/file#icon` where `icon` is the filename of the svg
-- `width` *optional* - width of the svg in any length unit, i.e. `32px`, `50%`, `auto` etc., default is `100%`
-- `height` *optional* - the height of the svg in any length unit
+- `src` - source relative to your app folder, syntax is `folder/file#icon` where `icon` is the filename of the SVG
+- `width` *optional* - width of the SVG in any length unit (i.e. `32px`, `50%`, `auto` etc.), default is `100%`
+- `height` *optional* - the height of the SVG in any length unit
 - `classes` *optional* - class name(s) separated by spaces
 - `viewBox` *optional* - define lengths and coordinates in order to scale to fit the total space available
 
@@ -77,7 +78,7 @@ svg-icon {
 ```
 
 When used with icons that contain styles inside their markup (multi-color),
-you will not be able to apply this CSS property without further work.
+you will not be able to apply this CSS property without further [work](https://css-tricks.com/gotchas-on-getting-svg-into-production/#some-workarounds).
 
 ### Scaling and Sizing
 

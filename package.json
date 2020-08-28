@@ -17,7 +17,8 @@
     "build": "npm run test && webpack --config-name prod",
     "test": "npx jest --verbose",
     "generate:sprite": "svg-icon-generate --folder=assets/material --output=assets/sprites/sprite.svg",
-    "generate:sprite-stripped": "svg-icon-generate --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg"
+    "generate:sprite-stripped": "svg-icon-generate --strip --folder=assets/fill-stroke --output=assets/sprites/sprite-stripped.svg",
+    "generate:sprite--cli-unlinked": "node ./scripts/cli.js --folder=assets/material --output=assets/sprites/sprite.svg"
   },
   "bin": {
     "svg-icon-generate": "./scripts/cli.js"
