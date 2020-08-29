@@ -87,10 +87,14 @@ class SvgIconSpriteGenerator {
 
     let { svgElement, elementsChanged } = svgParser.iterateFiles(fileList, this.strip, this.trim);
 
-    svgElement = svgParser.wrapInSvgTag(svgElement);
+    if (elementsChanged > 0) {
+      svgElement = svgParser.wrapInSvgTag(svgElement);
 
-    await svgParser.writeIconsToFile(this.output, svgElement);
-    console.log('\nWrote', elementsChanged, 'symbol elements in file', this.output);
+      await svgParser.writeIconsToFile(this.output, svgElement);
+      console.log('\nWrote', elementsChanged, 'symbol elements in file', this.output);
+    } else {
+      console.log('\nFinished without result (no file changes done)');
+    }
   }
 }
 

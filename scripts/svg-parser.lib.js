@@ -92,8 +92,8 @@ const svgParserLib = {
     files.forEach((fileObj) => {
       // console.log('Iterate file =>', fileObj, 'retrieveFileFn =>', retrieveFileFn);
       try {
-        let file = retrieveFileFn(fileObj.path);
-        let name = fileObj.name.replace('.svg', '');
+        let file = retrieveFileFn(fileObj);
+        let name = fileObj.name.replace(/\.[^.]*$/, '');
         let symbolEl = svgParserLib.createSymbol(file, name);
 
         if (strip) {
@@ -115,8 +115,8 @@ const svgParserLib = {
   },
 
 
-  readFile: (path) => {
-    return fs.readFileSync(path, 'utf8');
+  readFile: (fileObj) => {
+    return fs.readFileSync(fileObj.path, 'utf8');
   },
 
   /**

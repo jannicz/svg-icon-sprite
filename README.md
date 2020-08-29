@@ -138,7 +138,8 @@ To learn more, read [this](https://github.com/webcomponents/polyfills/tree/maste
 ## Generating the sprite
 
 Each time you add an icon, you need to run a script generating the sprite.
-It is recommended to add the following line to your npm scripts
+This module ships with a generator CLI script. It is recommended to add the
+following line to your npm scripts
 
 ```json
 "scripts": {
@@ -146,7 +147,7 @@ It is recommended to add the following line to your npm scripts
 }
 ```
 
-That lets you run it via
+That lets you run the generator via
 
 ```
 npm run generate:sprite
@@ -167,7 +168,7 @@ Example usage
 svg-icon-generate --folder=assets/icons --output=assets/sprites/sprite.svg --trim
 ```
 
-The script will iterate all SVGs in the source folder and create a single sprite SVG file
+The included script will iterate all SVGs in the source folder and create a single sprite SVG file
 using the [symbols technique](https://css-tricks.com/svg-symbol-good-choice-icons/).
 
 ## Author & License
